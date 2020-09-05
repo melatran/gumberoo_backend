@@ -15,3 +15,10 @@ class Student(models.Model):
   teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+
+class Lesson(models.Model):
+  name = models.CharField(max_length=100)
+  description = models.CharField(max_length=100)
+  students = models.ManyToManyField(Student)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
