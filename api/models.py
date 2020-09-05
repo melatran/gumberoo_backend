@@ -29,3 +29,17 @@ class LessonStudent(models.Model):
   mood = models.CharField(max_length=30)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+
+class Question(models.Model):
+  question = models.CharField(max_length=100)
+  reading = models.CharField(max_length=250)
+  lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+
+class Answer(models.Model):
+  answer = models.CharField(max_length=100)
+  correct = models.BooleanField(default=False)
+  question = models.ForeignKey(Question, on_delete=models.CASCADE)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
