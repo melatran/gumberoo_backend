@@ -1,5 +1,5 @@
 from django.test import TestCase
-from api.models import Teacher, Student, Lesson
+from api.models import Teacher, Student, Lesson, Question
 
 class TeacherModelTest(TestCase):
   def setUp(self):
@@ -34,4 +34,16 @@ class LessonModelTest(TestCase):
   def test_string_representation(self):
     lesson = Lesson.objects.get(name='lesson1')
     self.assertEqual(str(lesson), lesson.name)
+
+class QuestionModelTest(TestCase):
+  def setUp(self):
+    lesson = Lesson.objects.create(name='lesson2', description='lesson2 Description')
+    lesson.question_set.create(question='question1', reading='question1 Reading')
+
+  def test_string_representation(self):
+    question = Question.objects.get(question='question1')
+    self.assertEqual(str(question), question.question)
+
+
+
 
