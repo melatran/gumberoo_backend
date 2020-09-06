@@ -4,7 +4,6 @@ from api.models import Teacher, Student, Lesson, Question, Answer
 class TeacherModelTest(TestCase):
   def setUp(self):
     teacher = Teacher.objects.create(first_name='teacher1First', last_name='teacher1Last')
-    teacher.student_set.create(first_name='student1First', last_name='student2Last', age=5)
 
   def test_string_representation(self):
     teacher = Teacher.objects.get(first_name='teacher1First')
