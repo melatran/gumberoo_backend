@@ -1,9 +1,11 @@
 from django.test import TestCase
 from api.models import Teacher, Student, Lesson, Question, Answer
 
+from .factories import TeacherFactory, StudentFactory
+
 class TeacherModelTest(TestCase):
   def setUp(self):
-    teacher = Teacher.objects.create(first_name='teacher1First', last_name='teacher1Last')
+    teacher = TeacherFactory(first_name='teacher1First')
 
   def test_string_representation(self):
     teacher = Teacher.objects.get(first_name='teacher1First')
@@ -15,15 +17,16 @@ class TeacherModelTest(TestCase):
 
 class StudentModelTest(TestCase):
   def setUp(self):
-    teacher = Teacher.objects.create(first_name='teacher2First', last_name='teacher2Last')
-    teacher.student_set.create(first_name='student2First', last_name='student2Last', age=6)
+    # Both a student and a teacher are created here because an association is setup
+    # in the factories. student.teacher can still be called
+    student = StudentFactory(first_name='student1First')
 
   def test_string_representations(self):
-    student = Student.objects.get(first_name='student2First')
+    student = Student.objects.get(first_name='student1First')
     self.assertEqual(str(student), student.full_name())
 
   def test_full_name(self):
-    student = Student.objects.get(first_name='student2First')
+    student = Student.objects.get(first_name='student1First')
     self.assertEqual(str(student.full_name()), str(f'{student.first_name} {student.last_name}'))
 
 class LessonModelTest(TestCase):
