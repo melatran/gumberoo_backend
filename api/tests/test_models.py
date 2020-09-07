@@ -1,9 +1,11 @@
 from django.test import TestCase
 from api.models import Teacher, Student, Lesson, Question, Answer
 
+from .factories import TeacherFactory
+
 class TeacherModelTest(TestCase):
   def setUp(self):
-    teacher = Teacher.objects.create(first_name='teacher1First', last_name='teacher1Last')
+    self.teacher = TeacherFactory(first_name='teacher1First')
 
   def test_string_representation(self):
     teacher = Teacher.objects.get(first_name='teacher1First')
@@ -15,8 +17,8 @@ class TeacherModelTest(TestCase):
 
 class StudentModelTest(TestCase):
   def setUp(self):
-    teacher = Teacher.objects.create(first_name='teacher2First', last_name='teacher2Last')
-    teacher.student_set.create(first_name='student2First', last_name='student2Last', age=6)
+    self.teacher = TeacherFactory(first_name='teacher2First')
+    self.teacher.student_set.create(first_name='student2First', last_name='student2Last', age=6)
 
   def test_string_representations(self):
     student = Student.objects.get(first_name='student2First')
