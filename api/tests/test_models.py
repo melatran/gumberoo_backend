@@ -17,6 +17,8 @@ class TeacherModelTest(TestCase):
 
 class StudentModelTest(TestCase):
   def setUp(self):
+    # Both a student and a teacher are created here because an association is setup
+    # in the factories. student.teacher can still be called
     student = StudentFactory(first_name='student1First')
 
   def test_string_representations(self):
