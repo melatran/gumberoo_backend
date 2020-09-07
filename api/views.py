@@ -16,8 +16,8 @@ class TeacherDetail(generics.RetrieveAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
 
-  def get(self, request, id):
-    teacher = Teacher.objects.get(pk=id)
+  # def get(self, request, pk):
+  #   teacher = Teacher.objects.get(pk=pk)
 
-    serializer = TeacherSerializer(teacher)
-    return Response(serializer.data)
+  #   serializer = TeacherSerializer(teacher)
+  #   return Response(serializer.data)
