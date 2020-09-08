@@ -41,12 +41,21 @@ class TeacherViewSet(TestCase):
   def test_teacher_student_post(self): 
     data = {
       'id': 1
-      'first_name': 'newStudent1First',
-      'last_name': 'newStudent1Last',
-      'age': 9
+      'students':[
+        {
+        'first_name': 'newStudent1First',
+        'last_name': 'newStudent1Last',
+        'age': 9
+        },
+        {
+        'first_name': 'newStudent2First',
+        'last_name': 'newStudent2Last',
+        'age': 10
+        }
+      ]
     }
-    response = self.client.post('/api/v1/teachers/%s/students'% self.teacher1.id, data=data)
+    response = self.client.post('/api/v1/teachers/%s/students' % self.teacher1.id, data=data)
 
     self.assertEqual(response.status_code, 201)
-    self.assertEqual(Student.objects.count(), 1)
+    self.assertEqual(Student.objects.count(), 2)
     self.assertEqual(response.data['first_name'], data['first_name'])
