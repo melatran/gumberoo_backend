@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from api.models import Teacher
+from api.models import Student
 
 from .factories import TeacherFactory, StudentFactory
 
@@ -35,4 +36,17 @@ class TeacherViewSet(TestCase):
 
     self.assertEqual(response.status_code, 201)
     self.assertEqual(Teacher.objects.count(), 4)
+    self.assertEqual(response.data['first_name'], data['first_name'])
+
+  def test_teacher_student_post(self): 
+    data = {
+      'id': 1
+      'first_name': 'newStudent1First',
+      'last_name': 'newStudent1Last',
+      'age': 9
+    }
+    response = self.client.post('/api/v1/teachers/%s/students'% self.teacher1.id, data=data)
+
+    self.assertEqual(response.status_code, 201)
+    self.assertEqual(Student.objects.count(), 1)
     self.assertEqual(response.data['first_name'], data['first_name'])
