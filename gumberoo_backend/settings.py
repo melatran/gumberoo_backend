@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-conn = pscycopg2.connect(DATABASE_URL, sslmode='require')
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 # Application definition
