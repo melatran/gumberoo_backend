@@ -10,9 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import psycopg2
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,6 +31,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+conn = pscycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 # Application definition
@@ -82,7 +88,7 @@ WSGI_APPLICATION = 'gumberoo_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'gumberoo',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -127,3 +133,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DATABASES['default'] = dj_database_url.config(
+    conn_max_age=600, ssl_require=True)
