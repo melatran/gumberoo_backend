@@ -11,7 +11,5 @@ deploy:
   provider: heroku
   api_key:
     secure: puR5lu/lWpkFeFezaPxdt19tcq6q0yo+0ImEAmUDpxE5+eA4KI1aZBboVPk+1NZNibwxntWuC4RTHwMto2fF944M2Gnl55LnEUAVIqUMt34GCCI7tlc3+n4xHswMSPzINpy/OrGZjel+Yja1aD31VPkx9rWRv+wR14RRVSy7PnfxP9btbD+IivazGljX18ECVLzATzj/svzCA9myqON5rB2HxpOGpQsywF4Ly5CUcv7DUAGXvwrxkur11CqRA9qyVxCleeo9I0db6+7anysyWtLKxVUFZ5kbQZCoWUE6lkURbkYwt6fgAvDBARZ14kqPQRGlfE4QtgLlR14ldMrgeNL3Z/U5PcvrDOQnjnoKJe0sCPu4732jkmqpv2ZWsnGK3ZC9Z+m/+gPYkN8q800qocrw0qSCwCmHjWTkcTo8rIwOfoMiqKoow9cHojwhFCw/LkbVnyCUy8n1OPeG86uUQ0ZD692HdTmKpzZqzoi6lGgaRpCCiFhXa39kJFPGefF/d14KgGXuS/pwMuFPGj2T6BxWsjGU1LcY1/Y8G8KWNwnk0ciGdLOukB0yssGG8kUhJc/aQ4JDgEdCMkD5xnum+Bxyy5MSlV/BM53lamtesLPUyB+84LpqQOPhwlPPYErvh7HpayPh/HbrFIJmtbq6lvEB6e0fqH2IEJhfwYrDYj8=
-  on:
-    all_branches: true
   app: gumberoo-backend
   run: python manage.py migrate
