@@ -24,7 +24,7 @@ About this...
 
 ## End Points
 
-**Get** `/api/v1/teachers`
+**GET** `/api/v1/teachers`
 
 ## Teacher Students. 
 4
