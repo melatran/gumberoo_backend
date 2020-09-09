@@ -36,3 +36,63 @@ class TeacherViewSet(TestCase):
     self.assertEqual(response.status_code, 201)
     self.assertEqual(Teacher.objects.count(), 4)
     self.assertEqual(response.data['first_name'], data['first_name'])
+
+class TeacherLessonSet(TestCase):
+  def setUp(self):
+    self.teacher1 = TeacherFactory(first_name='teacher1First')
+
+  def test_can_post_lesson(self):
+    data = {
+      'lesson': {
+        'name': 'lessonName1',
+        'questions': [
+            {
+              'desc': 'question1 description',
+              'reading': 'question1 reading',
+              'answers': [
+                  {
+                    'desc': 'answer1 description',
+                    'correct': False
+                  },
+                  {
+                    'desc': 'answer2 description',
+                    'correct': False
+                  },
+                  {
+                    'desc': 'answer3 description',
+                    'correct': True
+                  },
+                  {
+                    'desc': 'answer4 description',
+                    'correct': False
+                  }
+                ]
+            },
+            {
+              'desc': 'question2 description',
+              'reading': 'question2 reading',
+              'answers': [
+                  {
+                    'desc': 'answer1 description',
+                    'correct': False
+                  },
+                  {
+                    'desc': 'answer2 description',
+                    'correct': True
+                  },
+                  {
+                    'desc': 'answer3 description',
+                    'correct': False
+                  },
+                  {
+                    'desc': 'answer4 description',
+                    'correct': False
+                  }
+                ]
+              }   
+          ]
+     }
+ }
+
+    response = self.client.post('/api/v1/teachers/%s/lessons/' % self.teacher1.id, data=data, content_type='application/json')
+    self.assertEqual(response.status_code, 201)
