@@ -1,7 +1,5 @@
 from rest_framework import serializers
 
-# from api.serializers import TeacherSerializer, LessonSerializer, QuestionSerializer, AnswerSerializer
-
 from api.models import Teacher, Lesson, Question, Answer
 
 class TeacherSerializer(serializers.ModelSerializer):
