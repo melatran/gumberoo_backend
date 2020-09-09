@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 
-from api.models import Teacher
+from api.models import Teacher, Lesson
 from api.serializers import TeacherSerializer, LessonSerializer
 
 
@@ -43,3 +43,7 @@ class TeacherLesson(APIView):
         )
 
     return Response(LessonSerializer(new_lesson).data, status=201)
+
+  def get(self, request, pk1, pk2):
+    lesson = Lesson.objects.get(pk=pk2)
+    return Response(LessonSerializer(lesson).data)
