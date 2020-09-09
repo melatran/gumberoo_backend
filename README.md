@@ -24,9 +24,10 @@ About this...
 
 ## End Points
 
-**GET** `/api/v1/teachers` 
+**GET** `/api/v1/teachers`   
 **POST** api/v1/teachers/{teacher_id}/students
-example request Body:   
+example request.
+Body:     
 ` data = {
       'id': 1,
       'students': [
