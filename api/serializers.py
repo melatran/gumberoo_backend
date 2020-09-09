@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from api.models import Teacher
+from api.models import Student
 
 class TeacherSerializer(serializers.ModelSerializer):
   class Meta:
@@ -9,9 +10,9 @@ class TeacherSerializer(serializers.ModelSerializer):
       'id', 'first_name', 'last_name'
     )
 
-class TeacherSerializer(serializers.ModelSerializer):
+class StudentSerializer(serializers.ModelSerializer):
   class Meta:
-    model = Teacher
+    model = Student
     fields = (
-      'id', 'first_name', 'last_name'
+        'teacher', 'id', 'first_name', 'last_name', 'age'
     )
