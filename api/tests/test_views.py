@@ -40,10 +40,17 @@ class TeacherViewSet(TestCase):
 class TeacherLessonSet(TestCase):
   def setUp(self):
     self.teacher1 = TeacherFactory(first_name='teacher1First', last_name='teacher1Last')
-    # self.teacher1 = Teacher.objects.create(first_name='teacher1First', last_name='teacher1Last')
+
     self.lesson1 = self.teacher1.lesson_set.create(name='name1', description='description1')
+
     self.question1 = self.lesson1.question_set.create(question='question1', reading='reading1')
-    self.answer1 = self.question1.answer_set.create(answer='question1', correct=False)
+    self.answer1 = self.question1.answer_set.create(answer='answer1', correct=False)
+    self.answer2 = self.question1.answer_set.create(answer='answer2', correct=True)
+
+    self.question2 = self.lesson1.question_set.create(question='question2', reading='reading2')
+    self.answer3 = self.question2.answer_set.create(answer='answer3', correct=True)
+    self.answer4 = self.question2.answer_set.create(answer='answer4', correct=False)
+
 
   def test_can_post_lesson(self):
     data = {
@@ -99,9 +106,22 @@ class TeacherLessonSet(TestCase):
  }
 
     response = self.client.post('/api/v1/teachers/%s/lessons/' % self.teacher1.id, data=data, content_type='application/json')
-    import code; code.interact(local=dict(globals(), **locals()))
+
     self.assertEqual(response.status_code, 201)
     self.assertEqual(response.data['name'], data['lesson']['name'])
-    # self.assertEqual(response.data['name'], self.teacher1.name)
+    self.assertEqual(response.data['questions'][0]['question'], 'question1 description')
+    self.assertEqual(response.data['questions'][1]['question'], 'question2 description')
+    self.assertEqual(response.data['questions'][0]['answers'][0]['answer'], 'answer1 description')
+    self.assertEqual(response.data['questions'][1]['answers'][0]['answer'], 'answer1 description')
 
-    # self.assertEqual
+  def test_can_get_lesson(self):
+    response = self.client.get('/api/v1/teachers/%s/lessons/%s' % (self.teacher1.id, self.lesson1.id))
+
+    self.assertEqual(response.status_code, 200)
+    self.assertEqual(response.data['name'], self.lesson1.name)
+    self.assertEqual(response.data['questions'][0]['question'], self.question1.question)
+    self.assertEqual(response.data['questions'][1]['question'], self.question2.question)
+    self.assertEqual(response.data['questions'][0]['answers'][0]['answer'], self.answer1.answer)
+    self.assertEqual(response.data['questions'][1]['answers'][0]['answer'], self.answer3.answer)
+
+
