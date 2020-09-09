@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
-from api.models import Teacher
+from api.models import Teacher, Question
 
 from .factories import TeacherFactory, StudentFactory
 
@@ -39,7 +39,11 @@ class TeacherViewSet(TestCase):
 
 class TeacherLessonSet(TestCase):
   def setUp(self):
-    self.teacher1 = TeacherFactory(first_name='teacher1First')
+    self.teacher1 = TeacherFactory(first_name='teacher1First', last_name='teacher1Last')
+    # self.teacher1 = Teacher.objects.create(first_name='teacher1First', last_name='teacher1Last')
+    self.lesson1 = self.teacher1.lesson_set.create(name='name1', description='description1')
+    self.question1 = self.lesson1.question_set.create(question='question1', reading='reading1')
+    self.answer1 = self.question1.answer_set.create(answer='question1', correct=False)
 
   def test_can_post_lesson(self):
     data = {
@@ -95,4 +99,9 @@ class TeacherLessonSet(TestCase):
  }
 
     response = self.client.post('/api/v1/teachers/%s/lessons/' % self.teacher1.id, data=data, content_type='application/json')
+    import code; code.interact(local=dict(globals(), **locals()))
     self.assertEqual(response.status_code, 201)
+    self.assertEqual(response.data['name'], data['lesson']['name'])
+    # self.assertEqual(response.data['name'], self.teacher1.name)
+
+    # self.assertEqual
