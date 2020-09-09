@@ -22,11 +22,12 @@ class TeacherDetail(generics.RetrieveAPIView):
   #   serializer = TeacherSerializer(teacher)
   #   return Response(serializer.data)
 
-class StudentCreate():
-  def get(self, request, pk):
-    teacher = Teacher.objects.get(pk=pk)
-    for student in request.data[students]:
-     teacher.student_set.create(first_name=student['first_name'], last_name=student['last_name'], age=student['age'])
+def student_create(request, pk):
+  teacher = Teacher.objects.get(pk=pk)
+  # import code; code.interact(local=dict(globals(), **locals()))
+  for student in request.body['students']:
+    teacher.student_set.create(first_name=student['first_name'], last_name=student['last_name'], age=student['age'])
+        
 
 
 

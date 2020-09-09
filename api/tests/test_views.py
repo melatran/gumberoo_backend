@@ -40,8 +40,8 @@ class TeacherViewSet(TestCase):
 
   def test_teacher_student_post(self): 
     data = {
-      'id': 1
-      'students':[
+      'id': 1,
+      'students': [
         {
         'first_name': 'newStudent1First',
         'last_name': 'newStudent1Last',
@@ -54,7 +54,7 @@ class TeacherViewSet(TestCase):
         }
       ]
     }
-    response = self.client.post('/api/v1/teachers/%s/students' % self.teacher1.id, data=data)
+    response = self.client.post('/api/v1/teachers/%s/students' % self.teacher1.id, content_type='application/json', data=data)
 
     self.assertEqual(response.status_code, 201)
     self.assertEqual(Student.objects.count(), 2)
