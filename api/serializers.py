@@ -11,10 +11,6 @@ class TeacherSerializer(serializers.ModelSerializer):
       'id', 'first_name', 'last_name'
     )
 
-# class LessonQuestionSerializer(serializers.ModelSerializer):
-#   class Meta:
-#     model = Question
-
 class AnswerSerializer(serializers.ModelSerializer):
   class Meta:
     model = Answer
@@ -33,12 +29,19 @@ class QuestionSerializer(serializers.ModelSerializer):
     read_only_fields = (
       'answers'
     )
-    # depth = 1
+
+class QuestionAnswerSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Answer
+    depth = 1
+    fields = ('id', 'answer', 'correct')
+
 class LessonQuestionSerializer(serializers.ModelSerializer):
+  answers = QuestionAnswerSerializer(source='answer_set', many=True, read_only=True)
   class Meta:
     model = Question
     depth = 1
-    fields = ('id', 'question', 'reading', 'lesson')
+    fields = ('id', 'question', 'reading', 'answers')
 
 class LessonSerializer(serializers.ModelSerializer):
   questions = LessonQuestionSerializer(source='question_set', many=True, read_only=True)
