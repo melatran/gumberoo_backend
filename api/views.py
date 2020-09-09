@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 
 from api.models import Teacher
-from api.serializers import TeacherSerializer
+from api.serializers import TeacherSerializer, LessonSerializer
 
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
@@ -42,4 +42,6 @@ class TeacherLesson(APIView):
           correct=answer['correct']
         )
 
-    import code; code.interact(local=dict(globals(), **locals()))
+    # return LessonSerializer(new_lesson)
+    return Response(LessonSerializer(new_lesson).data)
+    # import code; code.interact(local=dict(globals(), **locals()))
