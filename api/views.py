@@ -1,3 +1,4 @@
+import json
 from django.http import JsonResponse
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -24,9 +25,11 @@ class TeacherDetail(generics.RetrieveAPIView):
 
 def student_create(request, pk):
   teacher = Teacher.objects.get(pk=pk)
-  # import code; code.interact(local=dict(globals(), **locals()))
-  for student in request.body['students']:
+  data = json.loads(request.body)
+  for student in data['students']:
     teacher.student_set.create(first_name=student['first_name'], last_name=student['last_name'], age=student['age'])
+  
+  return 
         
 
 

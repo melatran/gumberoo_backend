@@ -58,4 +58,4 @@ class TeacherViewSet(TestCase):
 
     self.assertEqual(response.status_code, 201)
     self.assertEqual(Student.objects.count(), 2)
-    self.assertEqual(response.data['first_name'], data['first_name'])
+    self.assertEqual(response.body['first_name'], data['first_name'])

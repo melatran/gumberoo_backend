@@ -8,3 +8,10 @@ class TeacherSerializer(serializers.ModelSerializer):
     fields = (
       'id', 'first_name', 'last_name'
     )
+
+class TeacherSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Teacher
+    fields = (
+      'id', 'first_name', 'last_name'
+    )
