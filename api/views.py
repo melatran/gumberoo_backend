@@ -42,6 +42,4 @@ class TeacherLesson(APIView):
           correct=answer['correct']
         )
 
-    # return LessonSerializer(new_lesson)
-    return Response(LessonSerializer(new_lesson).data)
-    # import code; code.interact(local=dict(globals(), **locals()))
+    return Response(LessonSerializer(new_lesson).data, status=201)
