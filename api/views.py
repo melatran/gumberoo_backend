@@ -1,11 +1,12 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, QueryDict
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 
-from api.models import Teacher, LessonStudent, Student
-from api.serializers import TeacherSerializer, LessonStudentSerializer
+from api.models import Teacher, Lesson, LessonStudent, Student
+from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer
+
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
@@ -14,11 +15,31 @@ class TeacherDetail(generics.RetrieveAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
 
-  # def get(self, request, pk):
-  #   teacher = Teacher.objects.get(pk=pk)
 
-  #   serializer = TeacherSerializer(teacher)
-  #   return Response(serializer.data)
+class TeacherLesson(APIView):
+  parser_classes = [JSONParser]
+
+  def post(self, request, pk):
+    teacher = Teacher.objects.get(pk=pk)
+    new_lesson = teacher.lesson_set.create(name=request.data['lesson']['name'])
+
+    for question in request.data['lesson']['questions']:
+      new_question = new_lesson.question_set.create(
+        question=question['question'],
+        reading=question['reading']
+      )
+      for answer in question['answers']:
+        new_question.answer_set.create(
+          answer=answer['answer'],
+          correct=answer['correct']
+        )
+
+    return Response(LessonSerializer(new_lesson).data, status=201)
+
+  def get(self, request, pk):
+    lesson = Lesson.objects.get(pk=pk)
+    return Response(LessonSerializer(lesson).data)
+
 class LessonStudent(APIView):
   parser_classes = [JSONParser]
   
