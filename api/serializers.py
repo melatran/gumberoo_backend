@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models import Teacher, Lesson, Question, Answer
+from api.models import Teacher, Lesson, Question, Answer, LessonStudent
 
 class TeacherSerializer(serializers.ModelSerializer):
   class Meta:
@@ -51,3 +51,9 @@ class LessonSerializer(serializers.ModelSerializer):
     read_only_fields = ['questions']
     depth = 1
 
+class LessonStudentSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = LessonStudent
+    fields = (
+      "student", "lesson", "score", "mood"
+    )

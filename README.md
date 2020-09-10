@@ -5,7 +5,7 @@ Gumberoo is ...
 
 **Contributers**
 
-[Derek Borksi](https://github.com/dborski)
+[Derek Borski](https://github.com/dborski)
 
 [Max Mitrani](https://github.com/Lithnotep)
 
@@ -19,7 +19,7 @@ Gumberoo is ...
 * [End Points](#end-points)
 
 ## Software Requirements
-<img width="612" alt="Screen Shot 2020-09-09 at 7 44 46 PM" src="https://user-images.githubusercontent.com/59414750/92672005-eeb43f00-f2d4-11ea-96e3-580e8430edb3.png">
+<img width="764" alt="Screen Shot 2020-09-09 at 7 47 24 PM" src="https://user-images.githubusercontent.com/59414750/92672152-4eaae580-f2d5-11ea-8e8c-decb396f188e.png">
 
 - [Python 3.8.5](https://www.python.org/download/releases/3.0/)
 - [Django 3.1.1](https://www.djangoproject.com/)
@@ -31,15 +31,23 @@ Gumberoo is ...
 
 1. Fork this repository and clone it down
 2. Setup a virtualenv
+
     a. `python3 -m venv myenv`
+    
     b. `source myenv/bin/activate`
+    
 3. Run `pip install -r requirements.txt` to install libraries
 4. Create data in PosgreSQL
+
     a. `$ psql`
+    
     b. `$ CREATE DATABASE gumberoo;`
+    
     c. `$ \q`
 5. Run Migrations
+
     a. Run `python manage.py makemigrations`
+    
     b. Run `python manage.py migrate`
 
 ## Running the Test Suite
@@ -100,8 +108,10 @@ To check if tests are passing, run `python ./manage.py test`
 }
 ```
 
-**POST** api/v1/teachers/{teacher_id}/students example request.  
-Body:       
+**POST** `/api/v1/teachers/{teacher_id}/students` (Create students for a teacher)
+
+*Body*  
+
 ``` data = {
       'id': 1,          
       'students': [   
@@ -117,9 +127,11 @@ Body:
         }   
       ]   
     }.   
-    .    
-expected response.    
-    `[   
+```
+
+*Response*   
+```
+[   
     {   
         "teacher": 1,   
         "id": 7,   
@@ -134,11 +146,14 @@ expected response.
         "last_name": "newStudent2Last",   
         "age": 10   
     }   
-]  `   
+]
+```
     
-Get all Students for a teacher: **GET** api/v1/teachers/{teacher_id}/students.    
-expected response.   
-` [   
+**GET** `/api/v1/teachers/{teacher_id}/students` (Get all students for a teacher)    
+
+*Response* 
+```
+ [   
     {   
         "teacher": 1,   
         "id": 1,   
@@ -153,10 +168,9 @@ expected response.
         "last_name": "newStudent2Last",   
         "age": 10   
     }   
-  ]   
-  `   
+  ]     
  ```
- **POST** `/api/v1/students/:student_id` (Create a lesson for a student when they take the checkpoint for the lesson)
+ **POST** `/api/v1/students/:student_id` (Create a lesson for a student when they take the checkpoint for a lesson)
  
  *Body*
  ```
@@ -176,8 +190,9 @@ expected response.
     "mood": "I don't understand anything"
  }
  ```
-
-**GET** `/api/v1/lessons/:lesson_id`  (Get a specific lesson)  
+ ### Teacher Lesson Endpoints
+ 
+ **GET** `/api/v1/lessons/:lesson_id`  (Get a specific lesson)  
 
  *Response*
 
@@ -220,7 +235,12 @@ expected response.
         }
       ]
     }
-  ]
+  ],
+  'teacher': {
+    'id': 1,
+    'first_name': 'teacher1First',
+    'last_name': 'teacher1Last'
+  }
 }
 ```
 
@@ -233,45 +253,45 @@ expected response.
     'name': 'lessonName1',
     'questions': [
         {
-          'desc': 'question1 description',
+          'question': 'question1 description',
           'reading': 'question1 reading',
           'answers': [
               {
-                'desc': 'answer1 description',
+                'answer': 'answer1 description',
                 'correct': False
               },
               {
-                'desc': 'answer2 description',
+                'answer': 'answer2 description',
                 'correct': False
               },
               {
-                'desc': 'answer3 description',
+                'answer': 'answer3 description',
                 'correct': True
               },
               {
-                'desc': 'answer4 description',
+                'answer': 'answer4 description',
                 'correct': False
               }
             ]
         },
         {
-          'desc': 'question2 description',
+          'question': 'question2 description',
           'reading': 'question2 reading',
           'answers': [
               {
-                'desc': 'answer1 description',
+                'answer': 'answer1 description',
                 'correct': False
               },
               {
-                'desc': 'answer2 description',
+                'answer': 'answer2 description',
+                'correct': False
+              },
+              {
+                'answer': 'answer3 description',
                 'correct': True
               },
               {
-                'desc': 'answer3 description',
-                'correct': False
-              },
-              {
-                'desc': 'answer4 description',
+                'answer': 'answer4 description',
                 'correct': False
               }
             ]
@@ -286,44 +306,67 @@ expected response.
 ```python
 {
   'id': 1,
-  'name': 'Lesson 1',
+  'name': 'lessonName1',
   'questions': [
     {
       'id': 1,
-      'question': 'Question 1',
-      'reading': 'Reading 1',
+      'question': 'question1 description',
+      'reading': 'question1 reading',
       'answers': [
         {
           'id': 1,
-          'answer': 'Answer 1 Text',
+          'answer': 'answer1 description',
           'correct': False
         },
         {
           'id': 2,
-          'answer': 'Answer 2 Text',
+          'answer': 'answer2 description',
           'correct': True
+        },
+        {
+          'id': 3,
+          'answer': 'answer3 description',
+          'correct': False
+        },
+        {
+          'id': 4,
+          'answer': 'answer4 description',
+          'correct': False
         }
       ]
     },
     {
       'id': 2,
-      'question': 'Question 2',
-      'reading': 'Reading 2',
+      'question': 'question2 description',
+      'reading': 'question2 reading',
       'answers': [
         {
           'id': 3,
-          'answer': 'Answer 3 Text',
+          'answer': 'answer1 description',
           'correct': True
         },
         {
           'id': 4,
-          'answer': 'Answer 4 Text',
+          'answer': 'answer2 description',
+          'correct': False
+        },
+        {
+          'id': 5,
+          'answer': 'answer3 description',
+          'correct': True
+        },
+        {
+          'id': 6,
+          'answer': 'answer4 description',
           'correct': False
         }
       ]
     }
-  ]
+  ],
+  'teacher': {
+    'id': 1,
+    'first_name': 'teacher1First',
+    'last_name': 'teacher1Last'
+  }
 }
 ```
-
-

@@ -4,15 +4,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 
-from api.models import Teacher, Lesson
-from api.serializers import TeacherSerializer, LessonSerializer
-
+from api.models import Teacher, Lesson, LessonStudent, Student
+from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
 
-  
 class TeacherDetail(generics.RetrieveAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
@@ -41,3 +39,16 @@ class TeacherLesson(APIView):
   def get(self, request, pk):
     lesson = Lesson.objects.get(pk=pk)
     return Response(LessonSerializer(lesson).data)
+
+class LessonStudent(APIView):
+  parser_classes = [JSONParser]
+  
+  def post(self, request, pk):
+    student = Student.objects.get(pk=pk)
+    new_lessonstudent = student.lessonstudent_set.create(
+      lesson_id=request.data['lesson'],
+      score=request.data['score'],
+      mood=request.data['mood']
+    )
+
+    return Response(LessonStudentSerializer(new_lessonstudent).data)
