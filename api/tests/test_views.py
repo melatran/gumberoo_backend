@@ -128,7 +128,7 @@ class StudentLessonViewSet(TestCase):
   def setUp(self):
     self.teacher = Teacher.objects.create(first_name='Severus', last_name='Snape')
     self.student = Student.objects.create(first_name='Draco', last_name='Malfoy', age= 13, teacher_id=self.teacher.id)
-    self.lesson = Lesson.objects.create(name='Potions', description='Brew potions properly')
+    self.lesson = self.teacher.lesson_set.create(name='Potions', description='Brew potions properly')
 
   def test_post_student_lesson(self):
     data = {
