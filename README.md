@@ -190,6 +190,7 @@ To check if tests are passing, run `python ./manage.py test`
  }
  ```
  ### Teacher Lesson Endpoints
+ 
  **GET** `/api/v1/lessons/:lesson_id`  (Get a specific lesson)  
 
  *Response*
@@ -234,6 +235,11 @@ To check if tests are passing, run `python ./manage.py test`
       ]
     }
   ]
+  'teacher': {
+    'id': 1,
+    'first_name': 'teacher1First',
+    'last_name': 'teacher1Last'
+  }
 }
 ```
 
@@ -356,5 +362,10 @@ To check if tests are passing, run `python ./manage.py test`
       ]
     }
   ]
+  'teacher': {
+  'id': 1,
+  'first_name': 'teacher1First',
+  'last_name': 'teacher1Last'
+  }
 }
 ```
