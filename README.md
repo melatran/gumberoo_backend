@@ -234,7 +234,7 @@ To check if tests are passing, run `python ./manage.py test`
         }
       ]
     }
-  ]
+  ],
   'teacher': {
     'id': 1,
     'first_name': 'teacher1First',
@@ -361,7 +361,7 @@ To check if tests are passing, run `python ./manage.py test`
         }
       ]
     }
-  ]
+  ],
   'teacher': {
     'id': 1,
     'first_name': 'teacher1First',
