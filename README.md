@@ -189,6 +189,7 @@ To check if tests are passing, run `python ./manage.py test`
     "mood": "I don't understand anything"
  }
  ```
+ ### Teacher Lesson Endpoints
  **GET** `/api/v1/lessons/:lesson_id`  (Get a specific lesson)  
 
  *Response*
