@@ -15,7 +15,6 @@ class Teacher(models.Model):
 class Student(models.Model):
   first_name = models.CharField(max_length=30)
   last_name = models.CharField(max_length=30)
-  age = models.IntegerField()
   teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
