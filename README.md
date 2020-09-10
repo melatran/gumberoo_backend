@@ -24,7 +24,29 @@ About this...
 
 ## End Points
 
-**GET** `/api/v1/teachers`     
+**GET** `/api/v1/teachers`  (Get a list of all teachers)
+```
+RESPONSE
+
+[
+    {
+        "id": 1,
+        "first_name": "Sevrus",
+        "last_name": "Snape"
+    },
+    {
+        "id": 2,
+        "first_name": "Minerva",
+        "last_name": "McGonagall"
+    },
+    {
+        "id": 3,
+        "first_name": "Albus",
+        "last_name": "Dumbledore"
+    }
+]
+```
+
 **POST** api/v1/teachers/{teacher_id}/students example request.  
 Body:       
 ``` data = {
