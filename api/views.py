@@ -27,12 +27,12 @@ class TeacherLesson(APIView):
 
     for question in request.data['lesson']['questions']:
       new_question = new_lesson.question_set.create(
-        question=question['desc'],
+        question=question['question'],
         reading=question['reading']
       )
       for answer in question['answers']:
         new_question.answer_set.create(
-          answer=answer['desc'],
+          answer=answer['answer'],
           correct=answer['correct']
         )
 
