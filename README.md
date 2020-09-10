@@ -47,6 +47,16 @@ RESPONSE
 ]
 ```
 
+**POST** `/api/v1/teachers` (Create a new teacher)
+```
+BODY
+
+{
+    "first_name": "Remus",
+    "last_name": "Lupin"
+}
+```
+
 **POST** api/v1/teachers/{teacher_id}/students example request.  
 Body:       
 ``` data = {
@@ -102,3 +112,22 @@ expected response.
     }   
   ]   
   `   
+ ```
+ **POST** `/api/v1/students/:student_id` (Create a lesson for a student when they take the checkpoint for the lesson)
+ *Body*
+ ```
+ {
+    "lesson": 2,
+    "score": 1,
+    "mood": "I don't understand anything"
+ }
+ ```
+ *Response*
+ ```
+ {
+    "student": 3,
+    "lesson": 2,
+    "score": 1,
+    "mood": "I don't understand anything"
+ }
+ ```
