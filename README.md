@@ -19,7 +19,7 @@ Gumberoo is ...
 * [End Points](#end-points)
 
 ## Software Requirements
-<img width="612" alt="Screen Shot 2020-09-09 at 7 44 46 PM" src="https://user-images.githubusercontent.com/59414750/92672005-eeb43f00-f2d4-11ea-96e3-580e8430edb3.png">
+<img width="764" alt="Screen Shot 2020-09-09 at 7 47 24 PM" src="https://user-images.githubusercontent.com/59414750/92672152-4eaae580-f2d5-11ea-8e8c-decb396f188e.png">
 
 - [Python 3.8.5](https://www.python.org/download/releases/3.0/)
 - [Django 3.1.1](https://www.djangoproject.com/)
@@ -31,15 +31,23 @@ Gumberoo is ...
 
 1. Fork this repository and clone it down
 2. Setup a virtualenv
+
     a. `python3 -m venv myenv`
+    
     b. `source myenv/bin/activate`
+    
 3. Run `pip install -r requirements.txt` to install libraries
 4. Create data in PosgreSQL
+
     a. `$ psql`
+    
     b. `$ CREATE DATABASE gumberoo;`
+    
     c. `$ \q`
 5. Run Migrations
+
     a. Run `python manage.py makemigrations`
+    
     b. Run `python manage.py migrate`
 
 ## Running the Test Suite
