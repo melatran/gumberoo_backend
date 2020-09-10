@@ -58,45 +58,45 @@ class TeacherLessonSet(TestCase):
         'name': 'lessonName1',
         'questions': [
             {
-              'desc': 'question1 description',
+              'question': 'question1 description',
               'reading': 'question1 reading',
               'answers': [
                   {
-                    'desc': 'answer1 description',
+                    'answer': 'answer1 description',
                     'correct': False
                   },
                   {
-                    'desc': 'answer2 description',
+                    'answer': 'answer2 description',
                     'correct': False
                   },
                   {
-                    'desc': 'answer3 description',
+                    'answer': 'answer3 description',
                     'correct': True
                   },
                   {
-                    'desc': 'answer4 description',
+                    'answer': 'answer4 description',
                     'correct': False
                   }
                 ]
             },
             {
-              'desc': 'question2 description',
+              'question': 'question2 description',
               'reading': 'question2 reading',
               'answers': [
                   {
-                    'desc': 'answer1 description',
+                    'answer': 'answer1 description',
                     'correct': False
                   },
                   {
-                    'desc': 'answer2 description',
+                    'answer': 'answer2 description',
                     'correct': True
                   },
                   {
-                    'desc': 'answer3 description',
+                    'answer': 'answer3 description',
                     'correct': False
                   },
                   {
-                    'desc': 'answer4 description',
+                    'answer': 'answer4 description',
                     'correct': False
                   }
                 ]

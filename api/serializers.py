@@ -46,7 +46,7 @@ class LessonSerializer(serializers.ModelSerializer):
   class Meta:
     model = Lesson
     fields = (
-      'id', 'name', 'questions'
+      'id', 'name', 'questions', 'teacher'
     )
     read_only_fields = ['questions']
     depth = 1
