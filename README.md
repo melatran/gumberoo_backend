@@ -110,7 +110,8 @@ To check if tests are passing, run `python ./manage.py test`
 
 **POST** `/api/v1/teachers/{teacher_id}/students` (Create students for a teacher)
 
-*Body*
+*Body*  
+
 ``` data = {
       'id': 1,          
       'students': [   
