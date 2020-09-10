@@ -5,7 +5,7 @@ Gumberoo is ...
 
 **Contributers**
 
-[Derek Borksi](https://github.com/dborski)
+[Derek Borski](https://github.com/dborski)
 
 [Max Mitrani](https://github.com/Lithnotep)
 
@@ -189,3 +189,171 @@ To check if tests are passing, run `python ./manage.py test`
     "mood": "I don't understand anything"
  }
  ```
+ **GET** `/api/v1/lessons/:lesson_id`  (Get a specific lesson)  
+
+ *Response*
+
+```python
+{
+  'id': 1,
+  'name': 'Lesson 1',
+  'questions': [
+    {
+      'id': 1,
+      'question': 'Question 1',
+      'reading': 'Reading 1',
+      'answers': [
+        {
+          'id': 1,
+          'answer': 'Answer 1 Text',
+          'correct': False
+        },
+        {
+          'id': 2,
+          'answer': 'Answer 2 Text',
+          'correct': True
+        }
+      ]
+    },
+    {
+      'id': 2,
+      'question': 'Question 2',
+      'reading': 'Reading 2',
+      'answers': [
+        {
+          'id': 3,
+          'answer': 'Answer 3 Text',
+          'correct': True
+        },
+        {
+          'id': 4,
+          'answer': 'Answer 4 Text',
+          'correct': False
+        }
+      ]
+    }
+  ]
+}
+```
+
+**POST** `/api/v1/teachers/:teacher_id/lessons`  (Create a new lesson for a specific teacher)  
+
+ *Request*
+ ```python
+ {
+  'lesson': {
+    'name': 'lessonName1',
+    'questions': [
+        {
+          'question': 'question1 description',
+          'reading': 'question1 reading',
+          'answers': [
+              {
+                'answer': 'answer1 description',
+                'correct': False
+              },
+              {
+                'answer': 'answer2 description',
+                'correct': False
+              },
+              {
+                'answer': 'answer3 description',
+                'correct': True
+              },
+              {
+                'answer': 'answer4 description',
+                'correct': False
+              }
+            ]
+        },
+        {
+          'question': 'question2 description',
+          'reading': 'question2 reading',
+          'answers': [
+              {
+                'answer': 'answer1 description',
+                'correct': False
+              },
+              {
+                'answer': 'answer2 description',
+                'correct': False
+              },
+              {
+                'answer': 'answer3 description',
+                'correct': True
+              },
+              {
+                'answer': 'answer4 description',
+                'correct': False
+              }
+            ]
+          }   
+      ]
+  }
+ }
+ ```
+
+ *Response*
+ 
+```python
+{
+  'id': 1,
+  'name': 'lessonName1',
+  'questions': [
+    {
+      'id': 1,
+      'question': 'question1 description',
+      'reading': 'question1 reading',
+      'answers': [
+        {
+          'id': 1,
+          'answer': 'answer1 description',
+          'correct': False
+        },
+        {
+          'id': 2,
+          'answer': 'answer2 description',
+          'correct': True
+        },
+        {
+          'id': 3,
+          'answer': 'answer3 description',
+          'correct': False
+        },
+        {
+          'id': 4,
+          'answer': 'answer4 description',
+          'correct': False
+        }
+      ]
+    },
+    {
+      'id': 2,
+      'question': 'question2 description',
+      'reading': 'question2 reading',
+      'answers': [
+        {
+          'id': 3,
+          'answer': 'answer1 description',
+          'correct': True
+        },
+        {
+          'id': 4,
+          'answer': 'answer2 description',
+          'correct': False
+        },
+        {
+          'id': 5,
+          'answer': 'answer3 description',
+          'correct': True
+        },
+        {
+          'id': 6,
+          'answer': 'answer4 description',
+          'correct': False
+        }
+      ]
+    }
+  ]
+}
+```
