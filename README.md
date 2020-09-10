@@ -108,8 +108,9 @@ To check if tests are passing, run `python ./manage.py test`
 }
 ```
 
-**POST** api/v1/teachers/{teacher_id}/students example request.  
-Body:       
+**POST** `/api/v1/teachers/{teacher_id}/students` 
+
+*Body*
 ``` data = {
       'id': 1,          
       'students': [   
@@ -125,8 +126,9 @@ Body:
         }   
       ]   
     }.   
-    .    
-expected response.    
+```
+
+*Response*   
     `[   
     {   
         "teacher": 1,   
@@ -144,9 +146,11 @@ expected response.
     }   
 ]  `   
     
-Get all Students for a teacher: **GET** api/v1/teachers/{teacher_id}/students.    
-expected response.   
-` [   
+**GET** `/api/v1/teachers/{teacher_id}/students` (Get all students for a teacher)    
+
+*Response* 
+```
+ [   
     {   
         "teacher": 1,   
         "id": 1,   
@@ -161,10 +165,9 @@ expected response.
         "last_name": "newStudent2Last",   
         "age": 10   
     }   
-  ]   
-  `   
+  ]     
  ```
- **POST** `/api/v1/students/:student_id` (Create a lesson for a student when they take the checkpoint for the lesson)
+ **POST** `/api/v1/students/:student_id` (Create a lesson for a student when they take the checkpoint for a lesson)
  
  *Body*
  ```
