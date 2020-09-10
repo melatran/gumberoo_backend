@@ -25,9 +25,9 @@ About this...
 ## End Points
 
 **GET** `/api/v1/teachers`  (Get a list of all teachers)
-```
-RESPONSE
 
+*Response*
+```
 [
     {
         "id": 1,
@@ -48,12 +48,32 @@ RESPONSE
 ```
 
 **POST** `/api/v1/teachers` (Create a new teacher)
-```
-BODY
 
+*Body*
+```
 {
     "first_name": "Remus",
     "last_name": "Lupin"
+}
+```
+
+*Response*
+```
+{
+  "id": 4,
+  "first_name": "Remus",
+  "last_name": "Lupin"
+}
+```
+
+**GET** `/api/v1/teachers/:teacher_id` (Get information about a teacher by teacher_id)
+
+*Response*
+```
+{
+    "id": 1,
+    "first_name": "Sevrus",
+    "last_name": "Snape"
 }
 ```
 
@@ -114,6 +134,7 @@ expected response.
   `   
  ```
  **POST** `/api/v1/students/:student_id` (Create a lesson for a student when they take the checkpoint for the lesson)
+ 
  *Body*
  ```
  {
@@ -122,6 +143,7 @@ expected response.
     "mood": "I don't understand anything"
  }
  ```
+ 
  *Response*
  ```
  {
