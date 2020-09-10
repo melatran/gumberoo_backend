@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from api.models import Teacher, Student, Lesson, LessonStudent
-
 from .factories import TeacherFactory, StudentFactory
 
 class TeacherViewSet(TestCase):
@@ -39,19 +38,17 @@ class TeacherViewSet(TestCase):
 
 class StudentLessonViewSet(TestCase):
   def setUp(self):
-    self.teacher = Teacher.objects.create(first_name='Severus',
-    last_name='Snape')
+    self.teacher = Teacher.objects.create(first_name='Severus', last_name='Snape')
     self.student = Student.objects.create(first_name='Draco', last_name='Malfoy', age= 13, teacher_id=self.teacher.id)
-    self.lesson1 = Lesson.objects.create(name='Potions', description='Brew potions properly')
+    self.lesson = Lesson.objects.create(name='Potions', description='Brew potions properly')
 
   def test_post_student_lesson(self):
     data = {
-      "lesson": self.lesson1.id,
+      "lesson": self.lesson.id,
       "score": 3,
       "mood": "I had a brilliant time"
     }
-    response = self.client.post(
-        '/api/v1/students/%s' % (self.student.id), data=data, content_type='application/json')
+    response = self.client.post('/api/v1/students/%s' % (self.student.id), data=data, content_type='application/json')
    
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.data['score'], 3)
