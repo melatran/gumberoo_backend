@@ -31,7 +31,8 @@ class StudentModelTest(TestCase):
 
 class LessonModelTest(TestCase):
   def setUp(self):
-    Lesson.objects.create(name='lesson1', description='lesson1 Description')
+    self.teacher1 = TeacherFactory()
+    self.teacher1.lesson_set.create(name='lesson1', description='lesson1 Description')
 
   def test_string_representation(self):
     lesson = Lesson.objects.get(name='lesson1')
@@ -39,7 +40,8 @@ class LessonModelTest(TestCase):
 
 class QuestionModelTest(TestCase):
   def setUp(self):
-    lesson = Lesson.objects.create(name='lesson2', description='lesson2 Description')
+    self.teacher1 = TeacherFactory()
+    lesson = self.teacher1.lesson_set.create(name='lesson2', description='lesson2 Description')
     lesson.question_set.create(question='question1', reading='question1 Reading')
 
   def test_string_representation(self):
@@ -48,7 +50,8 @@ class QuestionModelTest(TestCase):
 
 class AnswerModelTest(TestCase):
   def setUp(self):
-    lesson = Lesson.objects.create(name='lesson3', description='lesson3 Description')
+    self.teacher1 = TeacherFactory()
+    lesson = self.teacher1.lesson_set.create(name='lesson3', description='lesson3 Description')
     question = lesson.question_set.create(question='question2', reading='question2 Reading')
     question.answer_set.create(answer='answer1', correct=False)
   
