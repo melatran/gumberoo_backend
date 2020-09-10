@@ -38,6 +38,6 @@ class TeacherLesson(APIView):
 
     return Response(LessonSerializer(new_lesson).data, status=201)
 
-  def get(self, request, pk1, pk2):
-    lesson = Lesson.objects.get(pk=pk2)
+  def get(self, request, pk):
+    lesson = Lesson.objects.get(pk=pk)
     return Response(LessonSerializer(lesson).data)

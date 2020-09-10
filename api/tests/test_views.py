@@ -115,7 +115,7 @@ class TeacherLessonSet(TestCase):
     self.assertIsInstance(response.data['questions'][1]['answers'][0], dict)
 
   def test_can_get_lesson(self):
-    response = self.client.get('/api/v1/teachers/%s/lessons/%s' % (self.teacher1.id, self.lesson1.id))
+    response = self.client.get('/api/v1/lessons/%s/' % self.lesson1.id)
 
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.data['name'], self.lesson1.name)
