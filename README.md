@@ -176,3 +176,154 @@ expected response.
     "mood": "I don't understand anything"
  }
  ```
+
+**GET** `/api/v1/lessons/:lesson_id`  (Get a specific lesson)  
+
+ *Response*
+
+```python
+{
+  'id': 1,
+  'name': 'Lesson 1',
+  'questions': [
+    {
+      'id': 1,
+      'question': 'Question 1',
+      'reading': 'Reading 1',
+      'answers': [
+        {
+          'id': 1,
+          'answer': 'Answer 1 Text',
+          'correct': False
+        },
+        {
+          'id': 2,
+          'answer': 'Answer 2 Text',
+          'correct': True
+        }
+      ]
+    },
+    {
+      'id': 2,
+      'question': 'Question 2',
+      'reading': 'Reading 2',
+      'answers': [
+        {
+          'id': 3,
+          'answer': 'Answer 3 Text',
+          'correct': True
+        },
+        {
+          'id': 4,
+          'answer': 'Answer 4 Text',
+          'correct': False
+        }
+      ]
+    }
+  ]
+}
+```
+
+**POST** `/api/v1/teachers/:teacher_id/lessons`  (Create a new lesson for a specific teacher)  
+
+ *Request*
+ ```python
+ {
+  'lesson': {
+    'name': 'lessonName1',
+    'questions': [
+        {
+          'desc': 'question1 description',
+          'reading': 'question1 reading',
+          'answers': [
+              {
+                'desc': 'answer1 description',
+                'correct': False
+              },
+              {
+                'desc': 'answer2 description',
+                'correct': False
+              },
+              {
+                'desc': 'answer3 description',
+                'correct': True
+              },
+              {
+                'desc': 'answer4 description',
+                'correct': False
+              }
+            ]
+        },
+        {
+          'desc': 'question2 description',
+          'reading': 'question2 reading',
+          'answers': [
+              {
+                'desc': 'answer1 description',
+                'correct': False
+              },
+              {
+                'desc': 'answer2 description',
+                'correct': True
+              },
+              {
+                'desc': 'answer3 description',
+                'correct': False
+              },
+              {
+                'desc': 'answer4 description',
+                'correct': False
+              }
+            ]
+          }   
+      ]
+  }
+ }
+ ```
+
+ *Response*
+ 
+```python
+{
+  'id': 1,
+  'name': 'Lesson 1',
+  'questions': [
+    {
+      'id': 1,
+      'question': 'Question 1',
+      'reading': 'Reading 1',
+      'answers': [
+        {
+          'id': 1,
+          'answer': 'Answer 1 Text',
+          'correct': False
+        },
+        {
+          'id': 2,
+          'answer': 'Answer 2 Text',
+          'correct': True
+        }
+      ]
+    },
+    {
+      'id': 2,
+      'question': 'Question 2',
+      'reading': 'Reading 2',
+      'answers': [
+        {
+          'id': 3,
+          'answer': 'Answer 3 Text',
+          'correct': True
+        },
+        {
+          'id': 4,
+          'answer': 'Answer 4 Text',
+          'correct': False
+        }
+      ]
+    }
+  ]
+}
+```
+
+
