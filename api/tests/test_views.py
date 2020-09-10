@@ -119,9 +119,9 @@ class TeacherLessonSet(TestCase):
 
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.data['name'], self.lesson1.name)
-    self.assertEqual(response.data['questions'][0]['question'], self.question1.question)
-    self.assertEqual(response.data['questions'][1]['question'], self.question2.question)
-    self.assertEqual(response.data['questions'][0]['answers'][0]['answer'], self.answer1.answer)
-    self.assertEqual(response.data['questions'][1]['answers'][0]['answer'], self.answer3.answer)
+    self.assertIsInstance(response.data['questions'][0], dict)
+    self.assertIsInstance(response.data['questions'][1], dict)
+    self.assertIsInstance(response.data['questions'][0]['answers'][0], dict)
+    self.assertIsInstance(response.data['questions'][1]['answers'][0], dict)
 
 
