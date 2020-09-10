@@ -129,7 +129,8 @@ To check if tests are passing, run `python ./manage.py test`
 ```
 
 *Response*   
-    `[   
+```
+[   
     {   
         "teacher": 1,   
         "id": 7,   
@@ -144,7 +145,8 @@ To check if tests are passing, run `python ./manage.py test`
         "last_name": "newStudent2Last",   
         "age": 10   
     }   
-]  `   
+]
+```
     
 **GET** `/api/v1/teachers/{teacher_id}/students` (Get all students for a teacher)    
 
