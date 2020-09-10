@@ -17,18 +17,12 @@ class TeacherDetail(generics.RetrieveAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
 
-  # def get(self, request, pk):
-  #   teacher = Teacher.objects.get(pk=pk)
-
-  #   serializer = TeacherSerializer(teacher)
-  #   return Response(serializer.data)
 
 class TeacherLesson(APIView):
   parser_classes = [JSONParser]
 
   def post(self, request, pk):
     teacher = Teacher.objects.get(pk=pk)
-
     new_lesson = teacher.lesson_set.create(name=request.data['lesson']['name'])
 
     for question in request.data['lesson']['questions']:
