@@ -34,6 +34,10 @@ class TeacherStudent(APIView):
 class TeacherLesson(APIView):
   parser_classes = [JSONParser]
 
+  def get(self, request, pk):
+    lesson = Lesson.objects.get(pk=pk)
+    return Response(LessonSerializer(lesson).data)
+    
   def post(self, request, pk):
     teacher = Teacher.objects.get(pk=pk)
     new_lesson = teacher.lesson_set.create(name=request.data['lesson']['name'])
@@ -51,9 +55,6 @@ class TeacherLesson(APIView):
 
     return Response(LessonSerializer(new_lesson).data, status=201)
 
-  def get(self, request, pk):
-    lesson = Lesson.objects.get(pk=pk)
-    return Response(LessonSerializer(lesson).data)
 
 class LessonStudent(APIView):
   parser_classes = [JSONParser]
