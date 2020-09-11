@@ -19,19 +19,25 @@ class TeacherDetail(generics.RetrieveAPIView):
 class TeacherStudent(APIView):
   parser_classes=[JSONParser]
 
+  def get(self, request, pk):
+    teacher = Teacher.objects.get(pk=pk)
+    return Response(StudentSerializer(teacher.student_set, many=True).data)
+
   def post(self, request, pk):
     teacher = Teacher.objects.get(pk=pk)
     students = []
+
     for student in request.data['students']:
-      students.append(teacher.student_set.create(first_name=student['first_name'], last_name=student['last_name'], age=student['age']))
+      students.append(teacher.student_set.create(first_name=student['first_name'], last_name=student['last_name']))
+    
     return Response(StudentSerializer(students, many=True).data)
 
 class LessonDetail(APIView):
   parser_classes = [JSONParser]
 
   def get(self, request, pk):
-    teacher = Teacher.objects.get(pk=pk)
-    return Response(StudentSerializer(teacher.student_set, many=True).data)
+    lesson = Lesson.objects.get(pk=pk)
+    return Response(LessonSerializer(lesson).data)
     
 class TeacherLesson(APIView):
   parser_classes = [JSONParser]
