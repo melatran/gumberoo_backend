@@ -169,10 +169,8 @@ class TeacherLessonSet(TestCase):
     response = self.client.get('/api/v1/teachers/%s/lessons/' % self.teacher1.id)
 
     self.assertEqual(response.status_code, 200)
-    # self.assertEqual(response.data[0]['name'], self.lesson1.name)
     self.assertIsNotNone(response.data[0]['name'])
     self.assertIsNotNone(response.data[1]['name'])
-    # self.assertEqual(response.data[1]['name'], self.lesson2.name)
     self.assertIsInstance(response.data[0]['questions'], list)
     self.assertIsInstance(response.data[1]['questions'], list)
     self.assertIsInstance(response.data[0]['questions'][0]['answers'], list)
