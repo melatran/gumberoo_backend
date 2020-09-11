@@ -196,7 +196,7 @@ To check if tests are passing, run `python ./manage.py test`
 
  *Response*
 
-```python
+```
 {
   'id': 1,
   'name': 'Lesson 1',
@@ -247,7 +247,7 @@ To check if tests are passing, run `python ./manage.py test`
 **POST** `/api/v1/teachers/:teacher_id/lessons`  (Create a new lesson for a specific teacher)  
 
  *Request body*
- ```python
+ ```
  {
   'lesson': {
     'name': 'lessonName1',
@@ -303,7 +303,7 @@ To check if tests are passing, run `python ./manage.py test`
 
  *Response*
  
-```python
+```
 {
   'id': 1,
   'name': 'lessonName1',
