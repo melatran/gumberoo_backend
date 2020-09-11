@@ -19,6 +19,5 @@ class StudentFactory(factory.django.DjangoModelFactory):
 
   first_name = factory.Sequence(lambda n: 'student%dFirst' % n)
   last_name = factory.Sequence(lambda n: 'student%dLast' % n)
-  age = fake.random_digit()
   teacher = factory.SubFactory(TeacherFactory)
 
