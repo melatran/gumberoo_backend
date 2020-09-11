@@ -82,6 +82,16 @@ class TeacherLessonSet(TestCase):
     self.answer3 = self.question2.answer_set.create(answer='answer3', correct=True)
     self.answer4 = self.question2.answer_set.create(answer='answer4', correct=False)
 
+    self.lesson2 = self.teacher1.lesson_set.create(name='name2', description='description2')
+
+    self.question3 = self.lesson2.question_set.create(question='question1', reading='reading1')
+    self.answer5 = self.question3.answer_set.create(answer='answer1', correct=False)
+    self.answer6 = self.question3.answer_set.create(answer='answer2', correct=True)
+
+    self.question4 = self.lesson2.question_set.create(question='question2', reading='reading2')
+    self.answer7 = self.question4.answer_set.create(answer='answer3', correct=True)
+    self.answer8 = self.question4.answer_set.create(answer='answer4', correct=False)
+
 
   def test_can_post_lesson(self):
     data = {
@@ -155,6 +165,17 @@ class TeacherLessonSet(TestCase):
     self.assertIsInstance(response.data['questions'][0]['answers'][0], dict)
     self.assertIsInstance(response.data['questions'][1]['answers'][0], dict)
 
+  def test_can_get_all_lessons_for_teacher(self):
+    response = self.client.get('/api/v1/teachers/%s/lessons/' % self.teacher1.id)
+
+    self.assertEqual(response.status_code, 200)
+    self.assertEqual(response.data[0]['name'], self.lesson1.name)
+    self.assertEqual(response.data[1]['name'], self.lesson2.name)
+    self.assertIsInstance(response.data[0]['questions'], list)
+    self.assertIsInstance(response.data[1]['questions'], list)
+    self.assertIsInstance(response.data[0]['questions'][0]['answers'], list)
+    self.assertIsInstance(response.data[1]['questions'][0]['answers'], list)
+
 
 class StudentLessonViewSet(TestCase):
   def setUp(self):
@@ -168,7 +189,7 @@ class StudentLessonViewSet(TestCase):
       "score": 3,
       "mood": "I had a brilliant time"
     }
-    response = self.client.post('/api/v1/students/%s/' % (self.student.id), data=data, content_type='application/json')
+    response = self.client.post('/api/v1/students/%s/' % self.student.id, data=data, content_type='application/json')
    
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.data['score'], 3)
