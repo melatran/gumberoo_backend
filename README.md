@@ -246,7 +246,7 @@ To check if tests are passing, run `python ./manage.py test`
 
 **POST** `/api/v1/teachers/:teacher_id/lessons`  (Create a new lesson for a specific teacher)  
 
- *Request*
+ *Request body*
  ```python
  {
   'lesson': {
