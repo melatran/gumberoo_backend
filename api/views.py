@@ -60,7 +60,7 @@ class TeacherLesson(APIView):
       for answer in question['answers']:
         new_question.answer_set.create(
           answer=answer['answer'],
-          correct=answer['correct']
+          correct=json.loads(answer['correct'].lower())
         )
 
     return Response(LessonSerializer(new_lesson).data, status=201)

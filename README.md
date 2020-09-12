@@ -209,12 +209,12 @@ To check if tests are passing, run `python ./manage.py test`
         {
           'id': 1,
           'answer': 'Answer 1 Text',
-          'correct': False
+          'correct': false
         },
         {
           'id': 2,
           'answer': 'Answer 2 Text',
-          'correct': True
+          'correct': true
         }
       ]
     },
@@ -226,12 +226,12 @@ To check if tests are passing, run `python ./manage.py test`
         {
           'id': 3,
           'answer': 'Answer 3 Text',
-          'correct': True
+          'correct': true
         },
         {
           'id': 4,
           'answer': 'Answer 4 Text',
-          'correct': False
+          'correct': false
         }
       ]
     }
@@ -243,12 +243,159 @@ To check if tests are passing, run `python ./manage.py test`
   }
 }
 ```
+**GET** `/api/v1/teachers/:teacher_id/lessons/`  (Get all lessons for a specific teacher)
 
-**POST** `/api/v1/teachers/:teacher_id/lessons`  (Create a new lesson for a specific teacher)  
+*Response* 
+```
+[
+    {
+        "id": 1,
+        "name": "Lesson 1",
+        "questions": [],
+        "teacher": {
+            "id": 1,
+            "first_name": "Harry",
+            "last_name": "Potter",
+            "created_at": "2020-09-10T15:30:53Z",
+            "updated_at": "2020-09-10T15:30:56Z"
+        }
+    },
+    {
+        "id": 2,
+        "name": "lesson 2",
+        "questions": [
+            {
+                "id": 1,
+                "question": "Question 1",
+                "reading": "Question 1 Reading",
+                "answers": [
+                    {
+                        "id": 1,
+                        "answer": "Answer 1",
+                        "correct": false
+                    },
+                    {
+                        "id": 2,
+                        "answer": "Answer 2",
+                        "correct": true
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "question": "Question 2",
+                "reading": "Question 2 Reading",
+                "answers": [
+                    {
+                        "id": 3,
+                        "answer": "Answer 3 Description",
+                        "correct": true
+                    },
+                    {
+                        "id": 4,
+                        "answer": "Answer 4 Description",
+                        "correct": false
+                    }
+                ]
+            }
+        ],
+        "teacher": {
+            "id": 1,
+            "first_name": "Harry",
+            "last_name": "Potter",
+            "created_at": "2020-09-10T15:30:53Z",
+            "updated_at": "2020-09-10T15:30:56Z"
+        }
+    },
+    {
+        "id": 3,
+        "name": "lessonName1",
+        "questions": [
+            {
+                "id": 3,
+                "question": "question1 description",
+                "reading": "question1 reading",
+                "answers": [
+                    {
+                        "id": 5,
+                        "answer": "answer1 description",
+                        "correct": false
+                    },
+                    {
+                        "id": 6,
+                        "answer": "answer2 description",
+                        "correct": false
+                    },
+                    {
+                        "id": 7,
+                        "answer": "answer3 description",
+                        "correct": true
+                    },
+                    {
+                        "id": 8,
+                        "answer": "answer4 description",
+                        "correct": false
+                    }
+                ]
+            }
+        ],
+        "teacher": {
+            "id": 1,
+            "first_name": "Harry",
+            "last_name": "Potter",
+            "created_at": "2020-09-10T15:30:53Z",
+            "updated_at": "2020-09-10T15:30:56Z"
+        }
+    },
+    {
+        "id": 4,
+        "name": "New Lesson",
+        "questions": [
+            {
+                "id": 4,
+                "question": "question1 description",
+                "reading": "question1 reading",
+                "answers": [
+                    {
+                        "id": 9,
+                        "answer": "answer1 description",
+                        "correct": false
+                    },
+                    {
+                        "id": 10,
+                        "answer": "answer2 description",
+                        "correct": false
+                    },
+                    {
+                        "id": 11,
+                        "answer": "answer3 description",
+                        "correct": true
+                    },
+                    {
+                        "id": 12,
+                        "answer": "answer4 description",
+                        "correct": false
+                    }
+                ]
+            }
+        ],
+        "teacher": {
+            "id": 1,
+            "first_name": "Harry",
+            "last_name": "Potter",
+            "created_at": "2020-09-10T15:30:53Z",
+            "updated_at": "2020-09-10T15:30:56Z"
+        }
+    }
+]
+```
+
+**POST** `/api/v1/teachers/:teacher_id/lessons/`  (Create a new lesson for a specific teacher)  
+
 
  *Request body*
  ```
- {
+
   'lesson': {
     'name': 'lessonName1',
     'questions': [
@@ -258,19 +405,19 @@ To check if tests are passing, run `python ./manage.py test`
           'answers': [
               {
                 'answer': 'answer1 description',
-                'correct': False
+                'correct': 'false'
               },
               {
                 'answer': 'answer2 description',
-                'correct': False
+                'correct': 'false'
               },
               {
                 'answer': 'answer3 description',
-                'correct': True
+                'correct': 'false'
               },
               {
                 'answer': 'answer4 description',
-                'correct': False
+                'correct': 'false'
               }
             ]
         },
@@ -280,19 +427,19 @@ To check if tests are passing, run `python ./manage.py test`
           'answers': [
               {
                 'answer': 'answer1 description',
-                'correct': False
+                'correct': 'false'
               },
               {
                 'answer': 'answer2 description',
-                'correct': False
+                'correct': 'false'
               },
               {
                 'answer': 'answer3 description',
-                'correct': True
+                'correct': 'false'
               },
               {
                 'answer': 'answer4 description',
-                'correct': False
+                'correct': 'false'
               }
             ]
           }   
@@ -316,22 +463,22 @@ To check if tests are passing, run `python ./manage.py test`
         {
           'id': 1,
           'answer': 'answer1 description',
-          'correct': False
+          'correct': false
         },
         {
           'id': 2,
           'answer': 'answer2 description',
-          'correct': True
+          'correct': true
         },
         {
           'id': 3,
           'answer': 'answer3 description',
-          'correct': False
+          'correct': false
         },
         {
           'id': 4,
           'answer': 'answer4 description',
-          'correct': False
+          'correct': false
         }
       ]
     },
@@ -343,22 +490,22 @@ To check if tests are passing, run `python ./manage.py test`
         {
           'id': 3,
           'answer': 'answer1 description',
-          'correct': True
+          'correct': true
         },
         {
           'id': 4,
           'answer': 'answer2 description',
-          'correct': False
+          'correct': false
         },
         {
           'id': 5,
           'answer': 'answer3 description',
-          'correct': True
+          'correct': true
         },
         {
           'id': 6,
           'answer': 'answer4 description',
-          'correct': False
+          'correct': false
         }
       ]
     }
