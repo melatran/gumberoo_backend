@@ -77,4 +77,15 @@ class LessonStudent(APIView):
       mood=request.data['mood']
     )
 
-    return Response(LessonStudentSerializer(new_lessonstudent).data)
+    return Response(LessonStudentSerializer(new_lessonstudent, many=True).data)
+
+
+class LessonStudentList(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+    lesson = Lesson.objects.get(pk=pk)
+    lessonstudents = lesson.lessonstudent_set.all()
+
+    return Response(LessonStudentSerializer(lessonstudents).data)
+
