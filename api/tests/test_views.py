@@ -212,14 +212,13 @@ class StudentStatisticsSet(TestCase):
 
   
   def test_get_average_score_per_student(self):
-    response = self.client.get('/api/v1/students/%s/average_score' % self.student1.id)
+    response = self.client.get('/api/v1/students/%s/average_score/' % self.student1.id)
 
-    import code; code.interact(local=dict(globals(), **locals()))
+    # import code; code.interact(local=dict(globals(), **locals()))
 
     response_data = {
         "id": self.student1.id,
         "average_score": 93
-      }
     }
 
     self.assertEqual(response.status_code, 200)
