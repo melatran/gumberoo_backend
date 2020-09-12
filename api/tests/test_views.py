@@ -104,19 +104,19 @@ class TeacherLessonSet(TestCase):
               'answers': [
                   {
                     'answer': 'answer1 description',
-                    'correct': False
+                    'correct': "false"
                   },
                   {
                     'answer': 'answer2 description',
-                    'correct': False
+                    'correct': "false"
                   },
                   {
                     'answer': 'answer3 description',
-                    'correct': True
+                    'correct': "false"
                   },
                   {
                     'answer': 'answer4 description',
-                    'correct': False
+                    'correct': "false"
                   }
                 ]
             },
@@ -126,19 +126,19 @@ class TeacherLessonSet(TestCase):
               'answers': [
                   {
                     'answer': 'answer1 description',
-                    'correct': False
+                    'correct': "false"
                   },
                   {
                     'answer': 'answer2 description',
-                    'correct': True
+                    'correct': "true"
                   },
                   {
                     'answer': 'answer3 description',
-                    'correct': False
+                    'correct': "false"
                   },
                   {
                     'answer': 'answer4 description',
-                    'correct': False
+                    'correct': "false"
                   }
                 ]
               }   

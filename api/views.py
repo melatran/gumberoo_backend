@@ -53,14 +53,16 @@ class TeacherLesson(APIView):
     new_lesson = teacher.lesson_set.create(name=request.data['lesson']['name'])
 
     for question in request.data['lesson']['questions']:
+      # import code; code.interact(local=dict(globals(), **locals()))
       new_question = new_lesson.question_set.create(
         question=question['question'],
         reading=question['reading']
       )
       for answer in question['answers']:
         new_question.answer_set.create(
+        # import code; code.interact(local=dict(globals(), **locals()))
           answer=answer['answer'],
-          correct=answer['correct']
+          correct=json.loads(answer['correct'].lower())
         )
 
     return Response(LessonSerializer(new_lesson).data, status=201)
