@@ -176,6 +176,57 @@ class TeacherLessonSet(TestCase):
     self.assertIsInstance(response.data[0]['questions'][0]['answers'], list)
     self.assertIsInstance(response.data[1]['questions'][0]['answers'], list)
 
+class StudentStatisticsSet(TestCase):
+  def setUp(self):
+    self.teacher1 = TeacherFactory(first_name='teacher1First', last_name='teacher1Last')
+
+    self.lesson1 = self.teacher1.lesson_set.create(name='name1', description='description1')
+
+    self.question1 = self.lesson1.question_set.create(question='question1', reading='reading1')
+    self.answer1 = self.question1.answer_set.create(answer='answer1', correct=False)
+    self.answer2 = self.question1.answer_set.create(answer='answer2', correct=True)
+
+    self.question2 = self.lesson1.question_set.create(question='question2', reading='reading2')
+    self.answer3 = self.question2.answer_set.create(answer='answer3', correct=True)
+    self.answer4 = self.question2.answer_set.create(answer='answer4', correct=False)
+
+    self.lesson2 = self.teacher1.lesson_set.create(name='name2', description='description2')
+
+    self.question3 = self.lesson2.question_set.create(question='question1', reading='reading1')
+    self.answer5 = self.question3.answer_set.create(answer='answer1', correct=False)
+    self.answer6 = self.question3.answer_set.create(answer='answer2', correct=True)
+
+    self.question4 = self.lesson2.question_set.create(question='question2', reading='reading2')
+    self.answer7 = self.question4.answer_set.create(answer='answer3', correct=True)
+    self.answer8 = self.question4.answer_set.create(answer='answer4', correct=False)
+
+    self.student1 = StudentFactory()
+    self.student2 = StudentFactory()
+    self.student3 = StudentFactory()
+
+    self.lessonStudent1 = self.student1.lessonstudent_set.create(lesson_id=self.lesson1.id, mood='cranky', score=90)
+    self.lessonStudent2 = self.student1.lessonstudent_set.create(lesson_id=self.lesson2.id, mood='cranky', score=96)
+
+    self.lessonStudent4 = self.student2.lessonstudent_set.create(lesson_id=self.lesson1.id, mood='cranky', score=62)
+    self.lessonStudent5 = self.student2.lessonstudent_set.create(lesson_id=self.lesson2.id, mood='cranky', score=22)
+
+  
+  def test_get_average_score_per_student(self):
+    response = self.client.get('/api/v1/students/%s/average_score' % self.student1.id)
+
+    import code; code.interact(local=dict(globals(), **locals()))
+
+    response_data = {
+        "id": self.student1.id,
+        "average_score": 93
+      }
+    }
+
+    self.assertEqual(response.status_code, 200)
+    self.assertEqual(response.data, response_data)
+
+  # def test_get_average_score_per_lesson(self):
+
 
 class StudentLessonViewSet(TestCase):
   def setUp(self):
