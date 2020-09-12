@@ -209,12 +209,12 @@ To check if tests are passing, run `python ./manage.py test`
         {
           'id': 1,
           'answer': 'Answer 1 Text',
-          'correct': False
+          'correct': false
         },
         {
           'id': 2,
           'answer': 'Answer 2 Text',
-          'correct': True
+          'correct': true
         }
       ]
     },
@@ -226,12 +226,12 @@ To check if tests are passing, run `python ./manage.py test`
         {
           'id': 3,
           'answer': 'Answer 3 Text',
-          'correct': True
+          'correct': true
         },
         {
           'id': 4,
           'answer': 'Answer 4 Text',
-          'correct': False
+          'correct': false
         }
       ]
     }
@@ -463,22 +463,22 @@ To check if tests are passing, run `python ./manage.py test`
         {
           'id': 1,
           'answer': 'answer1 description',
-          'correct': False
+          'correct': false
         },
         {
           'id': 2,
           'answer': 'answer2 description',
-          'correct': True
+          'correct': true
         },
         {
           'id': 3,
           'answer': 'answer3 description',
-          'correct': False
+          'correct': false
         },
         {
           'id': 4,
           'answer': 'answer4 description',
-          'correct': False
+          'correct': false
         }
       ]
     },
@@ -490,22 +490,22 @@ To check if tests are passing, run `python ./manage.py test`
         {
           'id': 3,
           'answer': 'answer1 description',
-          'correct': True
+          'correct': true
         },
         {
           'id': 4,
           'answer': 'answer2 description',
-          'correct': False
+          'correct': false
         },
         {
           'id': 5,
           'answer': 'answer3 description',
-          'correct': True
+          'correct': true
         },
         {
           'id': 6,
           'answer': 'answer4 description',
-          'correct': False
+          'correct': false
         }
       ]
     }
