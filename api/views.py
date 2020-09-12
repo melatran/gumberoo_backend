@@ -52,6 +52,8 @@ class TeacherLesson(APIView):
     teacher = Teacher.objects.get(pk=pk)
     new_lesson = teacher.lesson_set.create(name=request.data['lesson']['name'])
 
+    print(request.data)
+
     for question in request.data['lesson']['questions']:
       new_question = new_lesson.question_set.create(
         question=question['question'],
