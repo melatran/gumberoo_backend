@@ -395,7 +395,7 @@ To check if tests are passing, run `python ./manage.py test`
 
  *Request body*
  ```
-
+{
   'lesson': {
     'name': 'lessonName1',
     'questions': [
