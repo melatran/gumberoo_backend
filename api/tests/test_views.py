@@ -217,7 +217,7 @@ class StudentStatisticsSet(TestCase):
     # import code; code.interact(local=dict(globals(), **locals()))
 
     response_data = {
-        "id": self.student1.id,
+        "student_id": self.student1.id,
         "average_score": 93
     }
 

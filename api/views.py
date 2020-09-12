@@ -7,7 +7,8 @@ from rest_framework.parsers import JSONParser
 from django.db.models import Avg
 
 from api.models import Teacher, Lesson, LessonStudent, Student
-from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer
+from api.popos import Score
+from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, ScoreSerializer
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
@@ -85,6 +86,7 @@ class StudentAverage(APIView):
   parser_classes = [JSONParser]
 
   def get(self, request, pk):
-
-    average_score = LessonStudent.student_average_score(pk)
-    import code; code.interact(local=dict(globals(), **locals()))
+    average_score = LessonStudent.student_average_score(pk)['score__avg']
+    score = Score(student_id=pk, average_score=average_score)
+    
+    return Response(ScoreSerializer(score).data)
