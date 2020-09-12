@@ -194,13 +194,21 @@ class StudentLessonViewSet(TestCase):
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.data['score'], 3)
     self.assertEqual(response.data['mood'], 'I had a brilliant time')
-    self.assertEqual(response.data['lesson'], 4)
-    self.assertEqual(response.data['student'], 3)
+    self.assertEqual(response.data['lesson'], self.lesson.id)
+    self.assertEqual(response.data['student'], self.student.id)
   
   def test_get_all_lesson_students_for_lesson(self):
-    response = self.client.post('/api/v1/lessonstudents/%s/' % self.lesson.id, data=data, content_type='application/json')
+    self.student2 = Student.objects.create(first_name='praco', last_name='palfoy', teacher_id=self.teacher.id)   
+    self.student3 = Student.objects.create(first_name='qraco', last_name='qalfoy', teacher_id=self.teacher.id)   
+    self.lessonstudent1 = LessonStudent.objects.create(lesson_id=self.lesson.id, student_id=self.student2.id, score=5, mood='great!')
+    self.lessonstudent2 = LessonStudent.objects.create(lesson_id=self.lesson.id, student_id=self.student3.id, score=7, mood='Bad!' )
 
+    response = self.client.get('/api/v1/lessonstudents/%s/' % self.lesson.id, content_type='application/json')
+    
     self.assertEqual(response.status_code, 200)
-    self.assertEqual(response.data[0]['score'], 3)
-    self.assertEqual(response.data[0]['mood'], 'I had a brilliant time')
-    self.assertEqual(response.data[0]['student'], 3)
+    self.assertEqual(response.data[0]['score'], 5)
+    self.assertEqual(response.data[0]['mood'], 'great!')
+    self.assertEqual(response.data[0]['student'], self.student2.id)
+    self.assertEqual(response.data[1]['score'], 7)
+    self.assertEqual(response.data[1]['mood'], 'Bad!')
+    self.assertEqual(response.data[1]['student'], self.student3.id)
