@@ -196,3 +196,11 @@ class StudentLessonViewSet(TestCase):
     self.assertEqual(response.data['mood'], 'I had a brilliant time')
     self.assertEqual(response.data['lesson'], 4)
     self.assertEqual(response.data['student'], 3)
+  
+  def test_get_all_lesson_students_for_lesson(self):
+    response = self.client.post('/api/v1/lessonstudents/%s/' % self.lesson.id, data=data, content_type='application/json')
+
+    self.assertEqual(response.status_code, 200)
+    self.assertEqual(response.data[0]['score'], 3)
+    self.assertEqual(response.data[0]['mood'], 'I had a brilliant time')
+    self.assertEqual(response.data[0]['student'], 3)
