@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
+from django.db.models import Avg
 
 from api.models import Teacher, Lesson, LessonStudent, Student
 from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer
@@ -66,7 +67,7 @@ class TeacherLesson(APIView):
     return Response(LessonSerializer(new_lesson).data, status=201)
 
 
-class LessonStudent(APIView):
+class LessonStudentDetail(APIView):
   parser_classes = [JSONParser]
   
   def post(self, request, pk):
@@ -78,3 +79,12 @@ class LessonStudent(APIView):
     )
 
     return Response(LessonStudentSerializer(new_lessonstudent).data)
+
+
+class StudentAverage(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+
+    average_score = LessonStudent.student_average_score(pk)
+    import code; code.interact(local=dict(globals(), **locals()))

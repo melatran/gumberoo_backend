@@ -25,7 +25,8 @@ urlpatterns = [
     path('api/v1/teachers/<int:pk>/students/', views.TeacherStudent.as_view()),
     path('api/v1/teachers/<int:pk>/lessons/', views.TeacherLesson.as_view()),
     path('api/v1/lessons/<int:pk>/', views.LessonDetail.as_view()),
-    path('api/v1/students/<int:pk>/', views.LessonStudent.as_view())
+    path('api/v1/students/<int:pk>/', views.LessonStudentDetail.as_view()),
+    path('api/v1/students/<int:pk>/average_score/', views.StudentAverage.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
