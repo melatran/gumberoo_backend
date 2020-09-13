@@ -20,9 +20,11 @@ def analyze_tone(mood_text):
             {'text': mood_text},
               content_type='application/json',
           ).get_result()
-  tone_names = []
-  raw_watson_response = result['document_tone']['tones']
   
-  for raw_watson_response in raw_watson_response:
-    tone_names.append(raw_watson_response['tone_id'])
-  return {'document_tones': tone_names}
+  raw_watson_response = result['document_tone']['tones'][0]
+  watson_result = raw_watson_response['tone_name']
+
+  return watson_result
+  # for raw_watson_response in raw_watson_response:
+  #   tone_names.append(raw_watson_response[0])
+  # return tone_names
