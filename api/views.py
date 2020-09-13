@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from api.models import Teacher, Lesson, LessonStudent, Student
 from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer
-import api.watson_service
+from . import watson_service
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
@@ -80,7 +80,7 @@ class LessonStudentDetail(APIView):
     new_lessonstudent = student.lessonstudent_set.create(
       lesson_id=request.data['lesson'],
       score=request.data['score'],
-      mood=request.data['mood']
+      mood=request.data['mood'],
     )
 
     return Response(LessonStudentSerializer(new_lessonstudent).data)
