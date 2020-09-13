@@ -81,8 +81,8 @@ class LessonStudentDetail(APIView):
       lesson_id=request.data['lesson'],
       score=request.data['score'],
       mood=request.data['mood'],
+      mood_analyzer=watson_service.analyze_tone(request.data['mood'])
     )
-
     return Response(LessonStudentSerializer(new_lessonstudent).data)
 
 
