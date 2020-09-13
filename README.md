@@ -521,3 +521,42 @@ To check if tests are passing, run `python ./manage.py test`
   }
 }
 ```
+**GET** `api/v1/lessons/:lesson_id/students/:student_id/` get score specific score and moood for a student from a lesson.  
+
+ *Response*
+
+ ```
+ {
+   'lesson': 2
+   'student: 3
+   'score': 6
+   'mood': "Mad"
+ }
+ ```  
+
+**GET** `api/v1/lessonstudents/:lesson_id/` Get all students scores and moods from a given lesson.  
+
+*Response*
+```
+{[
+  {
+   'lesson': 2
+   'student: 3
+   'score': 6
+   'mood': "Mad"
+ },
+ {
+   'lesson': 2
+   'student: 4
+   'score': 2
+   'mood': "Happy"
+ },
+ {
+   'lesson': 2
+   'student: 5
+   'score': 8
+   'mood': "Sad"
+ }
+]}
+```
+
