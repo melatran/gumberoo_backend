@@ -59,6 +59,7 @@ class TeacherLesson(APIView):
     teacher = Teacher.objects.get(pk=pk)
     new_lesson = teacher.lesson_set.create(name=request.data['lesson']['name'])
 
+
     for question in request.data['lesson']['questions']:
       new_question = new_lesson.question_set.create(
         question=question['question'],
@@ -75,6 +76,11 @@ class TeacherLesson(APIView):
 
 class LessonStudentDetail(APIView):
   parser_classes = [JSONParser]
+
+  def get(self, request, pk, pk2):
+    get_id = LessonStudent.objects.filter(lesson_id=pk).filter(student_id=pk2).values('id')[0]['id']
+    lessonstudent = LessonStudent.objects.get(pk=get_id)
+    return Response(LessonStudentSerializer(lessonstudent).data)
   
   def post(self, request, pk):
     student = Student.objects.get(pk=pk)
@@ -105,3 +111,14 @@ class LessonAverage(APIView):
     lesson_score = LessonScore(lesson_id=pk, average_score=average_score)
     
     return Response(LessonScoreSerializer(lesson_score).data)
+
+    
+class LessonStudentList(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+    lesson = Lesson.objects.get(pk=pk)
+    lessonstudents = lesson.lessonstudent_set.all()
+
+    return Response(LessonStudentSerializer(lessonstudents, many=True).data)
+

@@ -14,6 +14,7 @@ Gumberoo is ...
 ## Quick Links
 
 * [Software Requirements](#software-requirements)
+* [IBM Watson Tone Analyzer API](#ibm-watson-tone-analyzer-api)
 * [Getting Started](#getting-started)
 * [Test Suite](#running-the-test-suite)
 * [End Points](#end-points)
@@ -26,6 +27,9 @@ Gumberoo is ...
 - [Pip 20.1.1](https://pip.pypa.io/en/stable/)
 - [TravisCI](https://travis-ci.org/)
 - [PostgreSQL](https://www.postgresql.org/docs/9.3/app-psql.html)
+
+## IBM Watson Tone Analyzer API
+The Gumberoo backend incorporates the [IBM Watson Tone Analyzer API](https://cloud.ibm.com/docs/tone-analyzer?topic=tone-analyzer-gettingStarted) to improve a teacher's relationship with their students and track their progress and growth with each lesson. After completing a "Check for Understanding", students are given the chance to write their mood/feelings/thoughts about the lesson. The Watson Tone Analyzer is then used to analyze a student's response and return an overall mood for that student. If the student's overall response is negative, the teacher is aware of the students they have to checkin with.
 
 ## Getting Started
 
@@ -395,7 +399,7 @@ To check if tests are passing, run `python ./manage.py test`
 
  *Request body*
  ```
-
+{
   'lesson': {
     'name': 'lessonName1',
     'questions': [
@@ -517,3 +521,42 @@ To check if tests are passing, run `python ./manage.py test`
   }
 }
 ```
+**GET** `api/v1/lessons/:lesson_id/students/:student_id/` get score specific score and moood for a student from a lesson.  
+
+ *Response*
+
+ ```
+ {
+   'lesson': 2
+   'student: 3
+   'score': 6
+   'mood': "Mad"
+ }
+ ```  
+
+**GET** `api/v1/lessonstudents/:lesson_id/` Get all students scores and moods from a given lesson.  
+
+*Response*
+```
+{[
+  {
+   'lesson': 2
+   'student: 3
+   'score': 6
+   'mood': "Mad"
+ },
+ {
+   'lesson': 2
+   'student: 4
+   'score': 2
+   'mood': "Happy"
+ },
+ {
+   'lesson': 2
+   'student: 5
+   'score': 8
+   'mood': "Sad"
+ }
+]}
+```
+
