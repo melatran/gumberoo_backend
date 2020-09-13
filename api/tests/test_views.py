@@ -4,6 +4,7 @@ from django.urls import reverse
 from rest_framework import status
 from api.models import Teacher, Question, Student, Lesson, LessonStudent
 from .factories import TeacherFactory, StudentFactory
+from .. import watson_service
 
 class TeacherViewSet(TestCase):
   def setUp(self):
