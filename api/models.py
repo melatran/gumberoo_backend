@@ -49,6 +49,10 @@ class LessonStudent(models.Model):
     score = LessonStudent.objects.filter(student_id=student_id).aggregate(Avg('score'))
     return score
 
+  def lesson_average_score(lesson_id):
+    score = LessonStudent.objects.filter(lesson_id=lesson_id).aggregate(Avg('score'))
+    return score
+
 class Question(models.Model):
   question = models.CharField(max_length=100)
   reading = models.CharField(max_length=250)
