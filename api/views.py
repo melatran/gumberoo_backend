@@ -7,16 +7,19 @@ from rest_framework.parsers import JSONParser
 from django.db.models import Avg
 
 from api.models import Teacher, Lesson, LessonStudent, Student
-from api.popos import Score
-from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, ScoreSerializer
+from api.popos import StudentScore, LessonScore
+from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, StudentScoreSerializer, LessonScoreSerializer
+
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
 
+
 class TeacherDetail(generics.RetrieveAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
+
 
 class TeacherStudent(APIView):
   parser_classes=[JSONParser]
@@ -34,12 +37,14 @@ class TeacherStudent(APIView):
     
     return Response(StudentSerializer(students, many=True).data)
 
+
 class LessonDetail(APIView):
   parser_classes = [JSONParser]
 
   def get(self, request, pk):
     lesson = Lesson.objects.get(pk=pk)
     return Response(LessonSerializer(lesson).data)
+
     
 class TeacherLesson(APIView):
   parser_classes = [JSONParser]
@@ -87,6 +92,17 @@ class StudentAverage(APIView):
 
   def get(self, request, pk):
     average_score = LessonStudent.student_average_score(pk)['score__avg']
-    score = Score(student_id=pk, average_score=average_score)
+    student_score = StudentScore(student_id=pk, average_score=average_score)
     
-    return Response(ScoreSerializer(score).data)
+    return Response(StudentScoreSerializer(student_score).data)
+
+
+class LessonAverage(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+    average_score = LessonStudent.lesson_average_score(pk)['score__avg']
+    lesson_score = LessonScore(lesson_id=pk, average_score=average_score)
+    # import code; code.interact(local=dict(globals(), **locals()))
+    
+    return Response(LessonScoreSerializer(lesson_score).data)
