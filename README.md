@@ -20,7 +20,7 @@ Gumberoo is ...
 * [End Points](#end-points)
 
 ## Software Requirements
-<img width="764" alt="Screen Shot 2020-09-09 at 7 47 24 PM" src="https://user-images.githubusercontent.com/59414750/92672152-4eaae580-f2d5-11ea-8e8c-decb396f188e.png">
+<img width="764" alt="Screen Shot 2020-09-13 at 12 39 02 PM" src="https://user-images.githubusercontent.com/59414750/93025782-2dd8dd80-f5be-11ea-8800-11f7d0ee4f07.png">
 
 - [Python 3.8.5](https://www.python.org/download/releases/3.0/)
 - [Django 3.1.1](https://www.djangoproject.com/)
