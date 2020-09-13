@@ -103,6 +103,5 @@ class LessonAverage(APIView):
   def get(self, request, pk):
     average_score = LessonStudent.lesson_average_score(pk)['score__avg']
     lesson_score = LessonScore(lesson_id=pk, average_score=average_score)
-    # import code; code.interact(local=dict(globals(), **locals()))
     
     return Response(LessonScoreSerializer(lesson_score).data)
