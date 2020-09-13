@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from api.models import Teacher, Lesson, LessonStudent, Student
 from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer
-from .services.watson_service import WatsonApi
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()

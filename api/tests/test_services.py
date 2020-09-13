@@ -11,5 +11,19 @@ class AnalyzeToneWatson(TestCase):
   def test_analyze_tone_of_text(self):
     mood_text = "I'm so ready for vacation"
     expected = {'document_tones': ['joy']}
-    
+    self.assertEqual(watson_service.analyze_tone(mood_text), expected)
+
+  def test_analyze_sentences(self):
+    mood_text = "This was so hard. I am going to cry."
+    expected = {'document_tones': ['sadness']}
+    self.assertEqual(watson_service.analyze_tone(mood_text), expected)
+  
+  def test_analyze_overall_mood_with_two_conflicting_sentences(self):
+    mood_text = "I am going to cry but I'm happy it's over"
+    expected = {'document_tones': ['sadness']}
+    self.assertEqual(watson_service.analyze_tone(mood_text), expected)
+
+  def test_analyze_mood_with_spelling_mistakes(self):
+    mood_text = "I'm ready for vacashion"
+    expected = {'document_tones': ['joy']}
     self.assertEqual(watson_service.analyze_tone(mood_text), expected)
