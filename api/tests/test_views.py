@@ -197,6 +197,7 @@ class StudentLessonViewSet(TestCase):
     self.assertEqual(response.data['mood'], 'I had a brilliant time')
     self.assertEqual(response.data['lesson'], self.lesson.id)
     self.assertEqual(response.data['student'], self.student.id)
+    self.assertEqual(response.data['mood_analyzer'], 'Joy')
 
   def test_get_student_lesson(self):
     
