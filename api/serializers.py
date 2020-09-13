@@ -62,5 +62,5 @@ class LessonStudentSerializer(serializers.ModelSerializer):
   class Meta:
     model = LessonStudent
     fields = (
-      "student", "lesson", "score", "mood"
+      "student", "lesson", "score", "mood", "mood_analyzer"
     )
