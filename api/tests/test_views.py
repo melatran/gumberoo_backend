@@ -196,7 +196,25 @@ class StudentLessonViewSet(TestCase):
     self.assertEqual(response.data['mood'], 'I had a brilliant time')
     self.assertEqual(response.data['lesson'], self.lesson.id)
     self.assertEqual(response.data['student'], self.student.id)
-  
+
+  def test_get_student_lesson(self):
+    
+    self.student2 = Student.objects.create(first_name='praco', last_name='palfoy', teacher_id=self.teacher.id)   
+    self.student3 = Student.objects.create(first_name='qraco', last_name='qalfoy', teacher_id=self.teacher.id)   
+    self.lessonstudent1 = LessonStudent.objects.create(lesson_id=self.lesson.id, student_id=self.student2.id, score=5, mood='great!')
+    self.lessonstudent2 = LessonStudent.objects.create(lesson_id=self.lesson.id, student_id=self.student3.id, score=7, mood='Bad!' )
+
+    # data = {
+    #   "lesson": self.lesson.id,
+    #   "student": self.student2.id
+    # }
+    response = self.client.get('/api/v1/lessons/%s/students/%s/' %(self.lesson.id, self.student2.id), content_type='application/json')
+
+ 
+    self.assertEqual(response.data['score'], 5)
+    self.assertEqual(response.data['mood'], 'great!')
+    self.assertEqual(response.data['student'], self.student2.id)
+
   def test_get_all_lesson_students_for_lesson(self):
     self.student2 = Student.objects.create(first_name='praco', last_name='palfoy', teacher_id=self.teacher.id)   
     self.student3 = Student.objects.create(first_name='qraco', last_name='qalfoy', teacher_id=self.teacher.id)   
