@@ -41,6 +41,7 @@ class LessonStudent(models.Model):
   student = models.ForeignKey(Student, on_delete=models.CASCADE)
   score = models.IntegerField()
   mood = models.CharField(max_length=300)
+  mood_analyzer = models.CharField(max_length=300)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
