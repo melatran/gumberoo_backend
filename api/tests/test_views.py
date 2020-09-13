@@ -176,7 +176,7 @@ class TeacherLessonSet(TestCase):
     self.assertIsInstance(response.data[0]['questions'][0]['answers'], list)
     self.assertIsInstance(response.data[1]['questions'][0]['answers'], list)
 
-class StudentStatisticsSet(TestCase):
+class StatisticsSet(TestCase):
   def setUp(self):
     self.teacher1 = TeacherFactory(first_name='teacher1First', last_name='teacher1Last')
 
@@ -251,5 +251,5 @@ class StudentLessonViewSet(TestCase):
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.data['score'], 3)
     self.assertEqual(response.data['mood'], 'I had a brilliant time')
-    self.assertEqual(response.data['lesson'], 4)
-    self.assertEqual(response.data['student'], 3)
+    self.assertEqual(response.data['lesson'], self.lesson.id)
+    self.assertEqual(response.data['student'], self.student.id)
