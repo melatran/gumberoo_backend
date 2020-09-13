@@ -25,6 +25,3 @@ def analyze_tone(mood_text):
   watson_result = raw_watson_response['tone_name']
 
   return watson_result
-  # for raw_watson_response in raw_watson_response:
-  #   tone_names.append(raw_watson_response[0])
-  # return tone_names
