@@ -49,7 +49,6 @@ class TeacherLesson(APIView):
     return Response(LessonSerializer(lessons, many=True).data)
 
   def post(self, request, pk):
-    print(request.data)
     teacher = Teacher.objects.get(pk=pk)
     new_lesson = teacher.lesson_set.create(name=request.data['lesson']['name'])
 
@@ -67,8 +66,14 @@ class TeacherLesson(APIView):
 
     return Response(LessonSerializer(new_lesson).data, status=201)
 
-class LessonStudent(APIView):
+
+class LessonStudentDetail(APIView):
   parser_classes = [JSONParser]
+
+  def get(self, request, pk, pk2):
+    get_id = LessonStudent.objects.filter(lesson_id=pk).filter(student_id=pk2).values('id')[0]['id']
+    lessonstudent = LessonStudent.objects.get(pk=get_id)
+    return Response(LessonStudentSerializer(lessonstudent).data)
   
   def post(self, request, pk):
     student = Student.objects.get(pk=pk)
@@ -79,3 +84,14 @@ class LessonStudent(APIView):
     )
 
     return Response(LessonStudentSerializer(new_lessonstudent).data)
+
+
+class LessonStudentList(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+    lesson = Lesson.objects.get(pk=pk)
+    lessonstudents = lesson.lessonstudent_set.all()
+
+    return Response(LessonStudentSerializer(lessonstudents, many=True).data)
+
