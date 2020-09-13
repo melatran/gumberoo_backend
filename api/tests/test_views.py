@@ -222,7 +222,16 @@ class StudentStatisticsSet(TestCase):
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.data, response_data)
 
-  # def test_get_average_score_per_lesson(self):
+  def test_get_average_score_per_lesson(self):
+    response = self.client.get('/api/v1/lessons/%s/average_score/' % self.lesson1.id)
+
+    response_data = {
+        "lesson_id": self.lesson1.id,
+        "average_score": 76
+    }
+
+    self.assertEqual(response.status_code, 200)
+    self.assertEqual(response.data, response_data)
 
 
 class StudentLessonViewSet(TestCase):
