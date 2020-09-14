@@ -11,13 +11,17 @@ Gumberoo is ...
 
 [Melanie Tran](https://github.com/melatran)
 
-## Quick Links
+## Table of Contents
 
 * [Software Requirements](#software-requirements)
 * [IBM Watson Tone Analyzer API](#ibm-watson-tone-analyzer-api)
 * [Getting Started](#getting-started)
 * [Test Suite](#running-the-test-suite)
 * [End Points](#end-points)
+    * [Teacher Endpoints](#teacher-endpoints)
+    * [Teacher Students Endpoints](#teacher-students-endpoints)
+    * [Teacher Lesson Endpoints](#teacher-lesson-endpoints)
+    * [Statistics Endpoints](#statistics-endpoints)
 
 ## Software Requirements
 <img width="764" alt="Screen Shot 2020-09-13 at 12 39 02 PM" src="https://user-images.githubusercontent.com/59414750/93025782-2dd8dd80-f5be-11ea-8800-11f7d0ee4f07.png">
