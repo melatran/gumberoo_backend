@@ -10,6 +10,7 @@ from api.models import Teacher, Lesson, LessonStudent, Student
 from api.popos import StudentScore, LessonScore
 from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, StudentScoreSerializer, LessonScoreSerializer
 
+from . import watson_service
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
@@ -87,9 +88,9 @@ class LessonStudentDetail(APIView):
     new_lessonstudent = student.lessonstudent_set.create(
       lesson_id=request.data['lesson'],
       score=request.data['score'],
-      mood=request.data['mood']
+      mood=request.data['mood'],
+      mood_analyzer=watson_service.analyze_tone(request.data['mood'])
     )
-
     return Response(LessonStudentSerializer(new_lessonstudent).data)
 
 
@@ -112,7 +113,7 @@ class LessonAverage(APIView):
     
     return Response(LessonScoreSerializer(lesson_score).data)
 
-    
+
 class LessonStudentList(APIView):
   parser_classes = [JSONParser]
 
