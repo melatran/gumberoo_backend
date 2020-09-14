@@ -120,25 +120,22 @@ To check if tests are passing, run `python ./manage.py test`
 
 ### Teacher Students Endpoints
 
-**POST** `/api/v1/teachers/{teacher_id}/students` (Create students for a teacher)
+**POST** `/api/v1/teachers/:teacher_id/students` (Create students for a teacher)
 
 *Body*  
 
-``` data = {
-      'id': 1,          
+``` data = {      
       'students': [   
       {   
         'first_name': 'newStudent1First',  
-        'last_name': 'newStudent1Last',  
-        'age': 9   
+        'last_name': 'newStudent1Last'
         },   
         {   
-        'first_name': 'newStudent2First',   
-        'last_name': 'newStudent2Last',   
-        'age': 10   
+        'first_name': 'newStudent2First',  
+        'last_name': 'newStudent2Last'
         }   
       ]   
-    }.   
+    }
 ```
 
 *Response*   
