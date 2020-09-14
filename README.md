@@ -559,4 +559,25 @@ To check if tests are passing, run `python ./manage.py test`
  }
 ]}
 ```
+### Statistics Endpoints
+
+**GET** `api/v1/students/:student_id/average_score/` Get aggregated average score on all lessons taken by a single student
+
+*Response*
+```
+{
+    "student_id": 1,
+    "average_score": 65
+}
+```
+
+**GET** `api/v1/lessons/:lesson_id/average_score/` Get aggregated average score for all student's scores on a single lesson
+
+*Response*
+```
+{
+    "lesson_id": 1,
+    "average_score": 88
+}
+```
 
