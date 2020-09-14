@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 
 class Teacher(models.Model):
   first_name = models.CharField(max_length=30)
@@ -44,6 +45,14 @@ class LessonStudent(models.Model):
   mood_analyzer = models.CharField(max_length=300)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+
+  def student_average_score(student_id):
+    score = LessonStudent.objects.filter(student_id=student_id).aggregate(Avg('score'))
+    return score
+
+  def lesson_average_score(lesson_id):
+    score = LessonStudent.objects.filter(lesson_id=lesson_id).aggregate(Avg('score'))
+    return score
 
 class Question(models.Model):
   question = models.CharField(max_length=100)

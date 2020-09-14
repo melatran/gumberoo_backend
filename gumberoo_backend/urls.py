@@ -26,6 +26,8 @@ urlpatterns = [
     path('api/v1/teachers/<int:pk>/lessons/', views.TeacherLesson.as_view()),
     path('api/v1/lessons/<int:pk>/', views.LessonDetail.as_view()),
     path('api/v1/students/<int:pk>/', views.LessonStudentDetail.as_view()),
+    path('api/v1/lessons/<int:pk>/average_score/', views.LessonAverage.as_view()),
+    path('api/v1/students/<int:pk>/average_score/', views.StudentAverage.as_view()),
     path('api/v1/lessons/<int:pk>/students/<int:pk2>/', views.LessonStudentDetail.as_view()),
     path('api/v1/lessonstudents/<int:pk>/', views.LessonStudentList.as_view())
 ]

@@ -4,17 +4,23 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
+from django.db.models import Avg
+
 from api.models import Teacher, Lesson, LessonStudent, Student
-from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer
+from api.popos import StudentScore, LessonScore
+from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, StudentScoreSerializer, LessonScoreSerializer
+
 from . import watson_service
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
 
+
 class TeacherDetail(generics.RetrieveAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
+
 
 class TeacherStudent(APIView):
   parser_classes=[JSONParser]
@@ -32,12 +38,14 @@ class TeacherStudent(APIView):
     
     return Response(StudentSerializer(students, many=True).data)
 
+
 class LessonDetail(APIView):
   parser_classes = [JSONParser]
 
   def get(self, request, pk):
     lesson = Lesson.objects.get(pk=pk)
     return Response(LessonSerializer(lesson).data)
+
     
 class TeacherLesson(APIView):
   parser_classes = [JSONParser]
@@ -84,6 +92,26 @@ class LessonStudentDetail(APIView):
       mood_analyzer=watson_service.analyze_tone(request.data['mood'])
     )
     return Response(LessonStudentSerializer(new_lessonstudent).data)
+
+
+class StudentAverage(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+    average_score = LessonStudent.student_average_score(pk)['score__avg']
+    student_score = StudentScore(student_id=pk, average_score=average_score)
+    
+    return Response(StudentScoreSerializer(student_score).data)
+
+
+class LessonAverage(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+    average_score = LessonStudent.lesson_average_score(pk)['score__avg']
+    lesson_score = LessonScore(lesson_id=pk, average_score=average_score)
+    
+    return Response(LessonScoreSerializer(lesson_score).data)
 
 
 class LessonStudentList(APIView):

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from api.models import Teacher, Lesson, Question, Answer, LessonStudent, Student
+from api.popos import LessonScore, StudentScore
 
 
 class TeacherSerializer(serializers.ModelSerializer):
@@ -64,3 +65,12 @@ class LessonStudentSerializer(serializers.ModelSerializer):
     fields = (
       "student", "lesson", "score", "mood", "mood_analyzer"
     )
+
+class StudentScoreSerializer(serializers.Serializer):
+  student_id = serializers.IntegerField()
+  average_score = serializers.IntegerField()
+
+
+class LessonScoreSerializer(serializers.Serializer):
+  lesson_id = serializers.IntegerField()
+  average_score = serializers.IntegerField()
