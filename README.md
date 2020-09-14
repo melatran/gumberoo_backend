@@ -124,9 +124,9 @@ To check if tests are passing, run `python ./manage.py test`
 
 *Body*  
 
-``` data = {      
+```{      
       'students': [   
-      {   
+        {   
         'first_name': 'newStudent1First',  
         'last_name': 'newStudent1Last'
         },   
@@ -156,7 +156,7 @@ To check if tests are passing, run `python ./manage.py test`
 ]
 ```
     
-**GET** `/api/v1/teachers/{teacher_id}/students` (Get all students for a teacher)    
+**GET** `/api/v1/teachers/:teacher_id/students` (Get all students for a teacher)    
 
 *Response* 
 ```
@@ -165,15 +165,13 @@ To check if tests are passing, run `python ./manage.py test`
         "teacher": 1,   
         "id": 1,   
         "first_name": "newStudent1First",   
-        "last_name": "newStudent1Last",   
-        "age": 9   
+        "last_name": "newStudent1Last"
     },   
     {   
         "teacher": 1,   
         "id": 2,   
         "first_name": "newStudent2First",   
-        "last_name": "newStudent2Last",   
-        "age": 10   
+        "last_name": "newStudent2Last"
     }   
   ]     
  ```
