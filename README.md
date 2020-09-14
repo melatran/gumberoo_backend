@@ -181,7 +181,7 @@ To check if tests are passing, run `python ./manage.py test`
  {
     "lesson": 2,
     "score": 1,
-    "mood": "I don't understand anything"
+    "mood": "I'm going to cry but I'm happy it's over"
  }
  ```
  
@@ -191,7 +191,8 @@ To check if tests are passing, run `python ./manage.py test`
     "student": 3,
     "lesson": 2,
     "score": 1,
-    "mood": "I don't understand anything"
+    "mood": "I'm going to cry but I'm happy it's over"
+    "mood_analysis": "Sadness"
  }
  ```
  ### Teacher Lesson Endpoints
