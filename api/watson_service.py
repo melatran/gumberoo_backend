@@ -21,7 +21,10 @@ def analyze_tone(mood_text):
               content_type='application/json',
           ).get_result()
   
-  raw_watson_response = result['document_tone']['tones'][0]
-  watson_result = raw_watson_response['tone_name']
+  if result['document_tone']['tones']:
+    raw_watson_response = result['document_tone']['tones'][0]
+    watson_result = raw_watson_response['tone_name']
+  else:
+    watson_result = "Unable to analyze"
 
   return watson_result
