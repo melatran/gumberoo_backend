@@ -59,6 +59,8 @@ To check if tests are passing, run `python ./manage.py test`
 
 ## End Points
 
+### Teacher Endpoints
+
 **GET** `/api/v1/teachers`  (Get a list of all teachers)
 
 *Response*
@@ -111,6 +113,8 @@ To check if tests are passing, run `python ./manage.py test`
     "last_name": "Snape"
 }
 ```
+
+### Teacher Students Endpoints
 
 **POST** `/api/v1/teachers/{teacher_id}/students` (Create students for a teacher)
 
