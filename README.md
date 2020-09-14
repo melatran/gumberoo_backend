@@ -145,15 +145,13 @@ To check if tests are passing, run `python ./manage.py test`
         "teacher": 1,   
         "id": 7,   
         "first_name": "newStudent1First",   
-        "last_name": "newStudent1Last",  
-        "age": 9   
+        "last_name": "newStudent1Last"
     },   
     {   
         "teacher": 1,   
         "id": 8,   
         "first_name": "newStudent2First",   
-        "last_name": "newStudent2Last",   
-        "age": 10   
+        "last_name": "newStudent2Last"
     }   
 ]
 ```
