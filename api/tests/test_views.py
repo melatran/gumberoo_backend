@@ -211,6 +211,9 @@ class StatisticsSet(TestCase):
     self.lessonStudent4 = self.student2.lessonstudent_set.create(lesson_id=self.lesson1.id, mood='cranky', score=62)
     self.lessonStudent5 = self.student2.lessonstudent_set.create(lesson_id=self.lesson2.id, mood='cranky', score=22)
 
+    self.lessonStudent6 = self.student3.lessonstudent_set.create(lesson_id=self.lesson1.id, mood='I felt great', score=87)
+    self.lessonStudent7 = self.student3.lessonstudent_set.create(lesson_id=self.lesson2.id, mood='ok', score=67)
+
   
   def test_get_average_score_per_student(self):
     response = self.client.get('/api/v1/students/%s/average_score/' % self.student1.id)
@@ -228,12 +231,23 @@ class StatisticsSet(TestCase):
 
     response_data = {
         "lesson_id": self.lesson1.id,
-        "average_score": 76
+        "average_score": 79
     }
 
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.data, response_data)
 
+  def test_get_zscore_for_all_students_on_lesson(self):
+    response = self.client.get('/api/v1/lessons/%s/zscores/' % self.lesson1.id)
+
+    self.assertEqual(response.status_code, 200)
+
+    self.assertIsNotNone(response.data[0]["student_id"])
+    self.assertEqual(response.data[0]["zscore"], 0.8232345301786239)
+    self.assertIsNotNone(response.data[1]["student_id"])
+    self.assertEqual(response.data[1]["zscore"], -1.407465487079584)
+    self.assertIsNotNone(response.data[2]["student_id"])
+    self.assertEqual(response.data[2]["zscore"], 0.5842309569009588)
 
 class StudentLessonViewSet(TestCase):
   def setUp(self):
