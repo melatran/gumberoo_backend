@@ -1,5 +1,7 @@
 import json
 from django.http import JsonResponse, QueryDict
+from django.http import HttpResponse
+from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -12,10 +14,12 @@ from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSe
 
 from . import watson_service
 
+def index(request):
+  return render(request, 'index.html')
+
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
   serializer_class = TeacherSerializer
-
 
 class TeacherDetail(generics.RetrieveAPIView):
   queryset = Teacher.objects.all()
