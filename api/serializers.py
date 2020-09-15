@@ -74,3 +74,7 @@ class StudentScoreSerializer(serializers.Serializer):
 class LessonScoreSerializer(serializers.Serializer):
   lesson_id = serializers.IntegerField()
   average_score = serializers.IntegerField()
+
+class ZScoreSerializer(serializers.Serializer):
+  student_id = serializers.IntegerField()
+  zscore = serializers.FloatField()

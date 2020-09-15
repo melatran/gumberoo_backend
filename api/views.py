@@ -7,10 +7,15 @@ from rest_framework.parsers import JSONParser
 from django.db.models import Avg
 
 from api.models import Teacher, Lesson, LessonStudent, Student
-from api.popos import StudentScore, LessonScore
-from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, StudentScoreSerializer, LessonScoreSerializer
+from api.popos import StudentScore, LessonScore, ZScore
+from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, StudentScoreSerializer, LessonScoreSerializer, ZScoreSerializer
 
 from . import watson_service
+
+# import pandas as pd
+import numpy as np
+import scipy.stats as stats
+
 
 class TeacherList(generics.CreateAPIView, generics.ListAPIView):
   queryset = Teacher.objects.all()
@@ -116,6 +121,25 @@ class LessonAverage(APIView):
     
     return Response(LessonScoreSerializer(lesson_score).data)
 
+class StudentZScores(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+    lesson_students = LessonStudent.objects.filter(lesson_id=pk)
+
+    scores = {}
+    for lesson_student in lesson_students:
+      scores[lesson_student.student_id] = lesson_student.score
+
+    keys, vals = zip(*scores.items())
+    z = stats.zscore(vals)
+    new_scores = dict(zip(keys,z))
+
+    zscores = []
+    for student_id, score in new_scores.items():
+      zscores.append(ZScore(student_id=student_id, zscore=score))
+
+    return Response(ZScoreSerializer(zscores, many=True).data)
 
 class LessonStudentList(APIView):
   parser_classes = [JSONParser]
