@@ -19,6 +19,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from api import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('admin/', admin.site.urls),
     path('api/v1/teachers/', views.TeacherList.as_view()),
     path('api/v1/teachers/<int:pk>/', views.TeacherDetail.as_view()),
