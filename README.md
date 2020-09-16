@@ -1,8 +1,8 @@
 # Gumberoo Backend
 
-**Visit The Gumberoo APP** | [Gumberoo](https://gumberoo.netlify.app/)
+**Gumberoo BE**  [Gumberoo API](https://gumberoo-backend.herokuapp.com/)
 
-**Visit The Gumberoo API** | [Gumberoo API](https://gumberoo-backend.herokuapp.com/)
+**Gumberoo FE**  [GitHub](https://github.com/gumberoo/gumberoo) |  [Gumberoo](https://gumberoo.netlify.app/)
 
 Gumberoo is a website for elementary school educators inspired by the education learning experience during the pandemic of 2020. As schools have gone remote, there has never been a more crucial period/threat to our children's education. Gumberoo's API is built on Python and Django. Teachers can create students and check for understanding "quizzes" after each lesson. The statistic endpoints help teachers gain an overview of how well they taught the lesson and how much of the material their student's are comphrehending.
 
