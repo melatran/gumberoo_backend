@@ -9,8 +9,8 @@ from rest_framework.parsers import JSONParser
 from django.db.models import Avg
 
 from api.models import Teacher, Lesson, LessonStudent, Student
-from api.popos import StudentScore, LessonScore
-from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, StudentScoreSerializer, LessonScoreSerializer
+from api.popos import StudentScore, LessonScore, ZScore, ZScoreGenerator
+from api.serializers import TeacherSerializer, LessonSerializer, LessonStudentSerializer, StudentSerializer, StudentScoreSerializer, LessonScoreSerializer, ZScoreSerializer
 
 from . import watson_service
 
@@ -120,6 +120,15 @@ class LessonAverage(APIView):
     
     return Response(LessonScoreSerializer(lesson_score).data)
 
+class StudentZScores(APIView):
+  parser_classes = [JSONParser]
+
+  def get(self, request, pk):
+    lesson_students = LessonStudent.objects.filter(lesson_id=pk)
+
+    zscores = ZScoreGenerator(lesson_students).generate_zscore()
+
+    return Response(ZScoreSerializer(zscores, many=True).data)
 
 class LessonStudentList(APIView):
   parser_classes = [JSONParser]
