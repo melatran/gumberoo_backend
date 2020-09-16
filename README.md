@@ -6,7 +6,7 @@
 
 Gumberoo is a website for elementary school educators inspired by the education learning experience during the pandemic of 2020. As schools have gone remote, there has never been a more crucial period/threat to our children's education. Gumberoo's API is built on Python and Django. Teachers can create students and check for understanding "quizzes" after each lesson. The statistic endpoints help teachers gain an overview of how well they taught the lesson and how much of the material their student's are comphrehending.
 
-When a student has completed the lesson check for understanding, they have the opportunity to write a reflection on how they felt during the lesson. Their comment is then analyzed by the IMB WATSON TONE ANALYZER to return an overall mood. Teachers can use this analysis to gain an overview of the student's mental well being. The mood analyzer was implemented to give introverted students a chance to communicate with their teachers.
+When a student has completed the lesson check for understanding, they have the opportunity to write a reflection on how they felt during the lesson. Their comment is then analyzed by the IBM WATSON TONE ANALYZER to return an overall mood. Teachers can use this analysis to gain an overview of the student's mental well being. The mood analyzer was implemented to give introverted students a chance to communicate with their teachers.
 
 **Contributers**
 
@@ -59,9 +59,7 @@ The Gumberoo backend incorporates the [IBM Watson Tone Analyzer API](https://clo
     c. `$ \q`
 5. Run Migrations
 
-    a. Run `python manage.py makemigrations`
-    
-    b. Run `python manage.py migrate`
+    a. Run `python manage.py migrate`
 
 ## Running the Test Suite
 To check if tests are passing, run `python ./manage.py test`
