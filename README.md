@@ -565,6 +565,16 @@ To check if tests are passing, run `python ./manage.py test`
 ```
 ### Statistics Endpoints
 
+**GET** `api/v1/lessons/:lesson_id/zscores/` Get calculated z-scores for every student's score on a specific lesson
+
+*Response*
+```
+{
+    "student_id": 1,
+    "zscore": 1.4078871326090967
+}
+```
+
 **GET** `api/v1/students/:student_id/average_score/` Get aggregated average score on all lessons taken by a single student
 
 *Response*
