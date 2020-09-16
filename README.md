@@ -1,6 +1,6 @@
 # Gumberoo Backend
 
-**Visit The Gumberoo App** | [Gumberoo](https://gumberoo.netlify.app/)
+**Visit The Gumberoo APP** | [Gumberoo](https://gumberoo.netlify.app/)
 
 **Visit The Gumberoo API** | [Gumberoo API](https://gumberoo-backend.herokuapp.com/)
 
