@@ -69,9 +69,8 @@ The Gumberoo backend incorporates the [IBM Watson Tone Analyzer API](https://clo
     b. `$ CREATE DATABASE gumberoo;`
     
     c. `$ \q`
-5. Run Migrations
-
-    a. Run `python manage.py migrate`
+5. Run Migrations `python manage.py migrate`
+6. Run the server `python manage.py runserver --settings=gumberoo_backend.config.settings.development`
 
 ## Running the Test Suite
 To check if tests are passing, run `python ./manage.py test`
