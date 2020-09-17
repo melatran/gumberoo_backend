@@ -1,32 +1,44 @@
 # Gumberoo Backend
+<img width="1142" alt="Screen Shot 2020-09-16 at 6 41 59 PM" src="https://user-images.githubusercontent.com/59414750/93406187-5118bc80-f84c-11ea-9acb-c07536196347.png">
 
-**Gumberoo BE**  [Gumberoo API](https://gumberoo-backend.herokuapp.com/)
+Gumberoo was a Capstone project completed in Mod 4 for the Turing School of Software and Design to demonstrate the knowledge we have gained throughout Turing. This project was a cross pollination project between the backend and the frontend teams. This app was designed using an agile process to turn well defined requirements into deployed and production ready software. We implemented new concepts, patterns, and libraries that have not been taught at Turing as well as gain more experience using continous integration tools to build and automate the deployment of features in various environments.
 
-**Gumberoo FE**  [GitHub](https://github.com/gumberoo/gumberoo) |  [Gumberoo](https://gumberoo.netlify.app/)
+**Click on the links below to visit our application in production**  
+- [Gumberoo API](https://gumberoo-backend.herokuapp.com/)
+- [Gumberoo Application](https://gumberoo.netlify.app/)
 
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Contributers](#contributers)
+3. [Software Requirements](#software-requirements)
+4. [IBM Watson Tone Analyzer API](#ibm-watson-tone-analyzer-api)
+5. [Getting Started](#getting-started)
+6. [Test Suite](#running-the-test-suite)
+7. [End Points](#end-points)
+    * [Teacher Endpoints](#teacher-endpoints)
+    * [Teacher Students Endpoints](#teacher-students-endpoints)
+    * [Teacher Lesson Endpoints](#teacher-lesson-endpoints)
+    * [Statistics Endpoints](#statistics-endpoints)
+    
+## Introduction
 Gumberoo is a website for elementary school educators inspired by the education learning experience during the pandemic of 2020. As schools have gone remote, there has never been a more crucial period/threat to our children's education. Gumberoo's API is built on Python and Django. Teachers can create students and check for understanding "quizzes" after each lesson. The statistic endpoints help teachers gain an overview of how well they taught the lesson and how much of the material their student's are comphrehending.
 
 When a student has completed the lesson check for understanding, they have the opportunity to write a reflection on how they felt during the lesson. Their comment is then analyzed by the IBM WATSON TONE ANALYZER to return an overall mood. Teachers can use this analysis to gain an overview of the student's mental well being. The mood analyzer was implemented to give introverted students a chance to communicate with their teachers.
 
-**Contributers**
-
+## Contributers
+### Backend Team
 [Derek Borski](https://github.com/dborski)
 
 [Max Mitrani](https://github.com/Lithnotep)
 
 [Melanie Tran](https://github.com/melatran)
 
-## Table of Contents
+### Frontend Team
+[Bill Wilke](https://github.com/Billwilke42)
 
-* [Software Requirements](#software-requirements)
-* [IBM Watson Tone Analyzer API](#ibm-watson-tone-analyzer-api)
-* [Getting Started](#getting-started)
-* [Test Suite](#running-the-test-suite)
-* [End Points](#end-points)
-    * [Teacher Endpoints](#teacher-endpoints)
-    * [Teacher Students Endpoints](#teacher-students-endpoints)
-    * [Teacher Lesson Endpoints](#teacher-lesson-endpoints)
-    * [Statistics Endpoints](#statistics-endpoints)
+[Kyle Wong](https://github.com/kylewong2510)
+
+[Melissa VanKempen](https://github.com/melizzo)
 
 ## Software Requirements
 <img width="764" alt="Screen Shot 2020-09-13 at 12 39 02 PM" src="https://user-images.githubusercontent.com/59414750/93025782-2dd8dd80-f5be-11ea-8800-11f7d0ee4f07.png">
