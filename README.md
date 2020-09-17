@@ -75,6 +75,8 @@ The Gumberoo backend incorporates the [IBM Watson Tone Analyzer API](https://clo
 ## Running the Test Suite
 To check if tests are passing, run `python ./manage.py test`
 
+<img width="509" alt="Screen Shot 2020-09-17 at 8 25 03 AM" src="https://user-images.githubusercontent.com/59414750/93484628-6418a480-f8bf-11ea-8986-b798004617b6.png">
+
 ## End Points
 
 ### Teacher Endpoints
